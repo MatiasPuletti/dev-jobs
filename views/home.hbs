@@ -1,2 +1,16 @@
-<h1>{{title}}</h1>
-<p>Welcome to Dev Jobs</p>
+<h1>Welcome to Dev Jobs</h1>
+
+{{#each job}}
+
+<h2>{{title}}</h2>
+<span>{{skill}}</span></br>
+<span>{{time}}</span></br>
+<span>{{_id}}</span></br>
+<span>{{title}}</span></br>
+<span>{{category}}</span></br>
+<span>{{creator.name}}</span></br>
+<span>{{comments}}</span></br>
+<span>{{creationDate}}</span></br>
+<span>{{pdateDate}}</span></br>
+
+{{/each}}
