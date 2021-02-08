@@ -3,7 +3,11 @@
 const mongoose = require('mongoose');
 
 const schema = new mongoose.Schema({
-  name: {
+  firstname: {
+    type: String,
+    trim: true
+  },
+  lastname: {
     type: String,
     trim: true
   },
@@ -12,6 +16,11 @@ const schema = new mongoose.Schema({
     required: true,
     lowercase: true,
     trim: true
+  },
+  userType:{
+    type: String,
+    enum: ['publisher', 'provider'],
+    required: true
   },
   passwordHashAndSalt: {
     type: String

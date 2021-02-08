@@ -13,14 +13,17 @@ router.get('/sign-up', (req, res, next) => {
 });
 
 router.post('/sign-up', (req, res, next) => {
-  const { name, email, password } = req.body;
+  const { firstname, lastname, email, password, userType } = req.body;
   bcryptjs
     .hash(password, 10)
     .then((hash) => {
+      console.log(userType);
       return User.create({
-        name,
+        firstname,
+        lastname,
         email,
-        passwordHashAndSalt: hash
+        userType,
+        passwordHashAndSalt: hash        
       });
     })
     .then((user) => {
