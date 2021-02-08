@@ -1,0 +1,15 @@
+<h1>{{job.title}}</h1>
+<h4>{{job.category}}</h4>
+<small>
+{{#each job.topics}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+</small>
+</br>
+<a href="{{job.url}}" target="_blank">Go there -></a>
+</br>
+{{#if job.image}}
+  <img src="{{job.image}}" alt="{{job.title}}">
+{{/if}}
+</br>
+<a href="/job/{{job._id}}/delete">Delete job</a>
+</br>
+<a href="/job/{{job._id}}/update">Update job</a>

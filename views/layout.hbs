@@ -11,6 +11,7 @@
       <a href="/">Home</a>
       {{#if user}}
         <a href="/private">{{user.name}}'s Profile</a>
+        <a href="/job/create">Add a Job</a>
         <form action="/authentication/sign-out" method="POST">
           <button>Sign Out</button>
         </form>
