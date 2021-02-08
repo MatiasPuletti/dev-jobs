@@ -53,6 +53,16 @@ const jobSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: 'User'
     },
+    interested_providers: [
+      {
+            type: mongoose.Types.ObjectId,
+            ref: 'Application'
+      }
+      ],
+      accepted_provider: {
+            type: mongoose.Types.ObjectId,
+            ref: 'Application'
+      },
     comments: [
       {
         message: {

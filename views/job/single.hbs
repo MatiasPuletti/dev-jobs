@@ -4,8 +4,11 @@
 {{#each job.topics}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
 </small>
 </br>
-<a href="{{job.url}}" target="_blank">Go there -></a>
+<a href="/job/{{job._id}}/application" target="_blank">Go there -></a>
 </br>
+ <form method="POST" action="/job/{{job._id}}/application">
+    <button>I´M INTERESTED</button>
+  </form>
 {{#if job.image}}
   <img src="{{job.image}}" alt="{{job.title}}">
 {{/if}}

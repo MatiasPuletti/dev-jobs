@@ -4,6 +4,7 @@ const express = require('express');
 const router = new express.Router();
 const routeGuard = require('../middleware/route-guard');
 const Job = require('../models/job');
+const Application = require('../models/application');
 const uploadMiddleware = require('./../middleware/file-upload');
 
 router.get('/create', routeGuard, (req, res, next) => {
@@ -64,6 +65,29 @@ router.get('/:id', (req, res, next) => {
       if (error.kind === 'ObjectId') {
         error.status = 404;
       }
+      next(error);
+    });
+});
+
+router.get('/:id/application', routeGuard, (req, res, next) => {
+  const id = req.params.id;
+  res.send('Hello world');
+  res.redirect(`/${id}`);
+});
+
+router.post('/:id/application', routeGuard, (req, res, next) => {
+  const data = req.body;
+  const id = req.params.id;
+  const user = req.user._id;
+
+  Application.create({
+    job: id,
+    interested_providers: user
+  })
+    .then((application) => {
+      res.redirect(`/job/${job}`);
+    })
+    .catch((error) => {
       next(error);
     });
 });
