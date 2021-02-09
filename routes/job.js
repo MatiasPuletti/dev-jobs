@@ -58,7 +58,11 @@ router.get('/:id', (req, res, next) => {
         error.status = 404;
         next(error);
       } else {
-        res.render('job/single', { job: job });
+        Application.find({ "job": id  })
+          .populate('interested_user')
+          .then((application) => {
+            res.render('job/single', { job: job, application: application });
+          });
       }
     })
     .catch((error) => {

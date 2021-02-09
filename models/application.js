@@ -5,11 +5,12 @@ const mongoose = require('mongoose');
 const applicationSchema = new mongoose.Schema(
   {
     job: {
-      type: String,
-      required: true
+      type: mongoose.Types.ObjectId,
+      ref: 'Job'
     },
     interested_user: {
-      type: String
+      type: mongoose.Types.ObjectId,
+      ref: 'User'
     }
   },
   {

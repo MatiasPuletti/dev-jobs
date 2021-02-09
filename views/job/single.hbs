@@ -1,7 +1,7 @@
 <h1>{{job.title}}</h1>
 <h4>{{job.category}}</h4>
 <small>
-{{#each job.topics}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+{{#each job.skill}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
 </small>
 </br>
 <a href="" target="_blank">Go there -></a>
@@ -18,3 +18,6 @@
 <a href="/job/{{job._id}}/delete">Delete job</a>
 </br>
 <a href="/job/{{job._id}}/update">Update job</a>
+{{#each application }} 
+<small>{{interested_user.firstname}} </small>
+{{/each}}
