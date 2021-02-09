@@ -69,29 +69,6 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
-router.get('/:id/application', routeGuard, (req, res, next) => {
-  const id = req.params.id;
-  res.send('Hello world');
-  res.redirect(`/${id}`);
-});
-
-router.post('/:id/application', routeGuard, (req, res, next) => {
-  const data = req.body;
-  const id = req.params.id;
-  const user = req.user._id;
-
-  Application.create({
-    job: id,
-    interested_providers: user
-  })
-    .then((application) => {
-      res.redirect(`/job/${job}`);
-    })
-    .catch((error) => {
-      next(error);
-    });
-});
-
 router.get('/:id/update', routeGuard, (req, res, next) => {
   const id = req.params.id;
   Job.findById(id)
@@ -134,6 +111,25 @@ router.post('/:id/delete', routeGuard, (req, res, next) => {
   Job.findByIdAndDelete(id)
     .then(() => {
       res.redirect('/');
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
+router.post('/:id', routeGuard, (req, res, next) => {
+  console.log(req.body);
+  const job = req.body.job;
+  console.log(job);
+  const user = req.session.userId;
+  console.log(`user is ${user}`);
+
+  Application.create({
+    job: job,
+    interested_user: user
+  })
+    .then((application) => {
+      res.redirect(`/job/${job}`);
     })
     .catch((error) => {
       next(error);

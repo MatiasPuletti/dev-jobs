@@ -4,10 +4,12 @@
 {{#each job.topics}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
 </small>
 </br>
-<a href="/job/{{job._id}}/application" target="_blank">Go there -></a>
+<a href="" target="_blank">Go there -></a>
 </br>
- <form method="POST" action="/job/{{job._id}}/application">
+ <form method="POST" action="">
     <button>I´M INTERESTED</button>
+    <input type="text" id="input-title" name="job" value="{{job._id}}" required />  
+
   </form>
 {{#if job.image}}
   <img src="{{job.image}}" alt="{{job.title}}">

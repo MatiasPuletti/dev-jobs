@@ -3,7 +3,7 @@
 const express = require('express');
 const router = new express.Router();
 const routeGuard = require('../middleware/route-guard');
-const Job = require('../models/job');
+const Job = require('./../models/job');
 
 router.get('/', (req, res, next) => {
   Job.find()

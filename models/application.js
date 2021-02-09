@@ -8,12 +8,7 @@ const applicationSchema = new mongoose.Schema(
       type: String,
       required: true
     },
-    interested_providers: [
-      {
-        type: String
-      }
-    ],
-    accepted_provider: {
+    interested_user: {
       type: String
     }
   },
