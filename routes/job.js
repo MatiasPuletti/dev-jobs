@@ -7,6 +7,7 @@ const Job = require('../models/job');
 const Application = require('../models/application');
 const uploadMiddleware = require('./../middleware/file-upload');
 
+
 router.get('/create', routeGuard, (req, res, next) => {
   res.render('job/create');
 });
@@ -51,26 +52,39 @@ router.post(
 
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
+  const sessionUserId = req.session.userId
+  let job;
+  let sessionUserIsInterested = false;
   Job.findById(id)
-    .then((job) => {
+    .then((doc) => {
+      job = doc;
       if (job === null) {
         const error = new Error('Job does not exist.');
         error.status = 404;
         next(error);
       } else {
-        Application.find({ "job": id  })
+        Application.find({ "job": id })
           .populate('interested_user')
           .then((application) => {
-            res.render('job/single', { job: job, application: application });
-          });
-      }
-    })
-    .catch((error) => {
-      if (error.kind === 'ObjectId') {
-        error.status = 404;
-      }
-      next(error);
-    });
+
+            application.forEach(function (arrayItem) {
+              if (interested_user === sessionUserId) {
+                console.log("they´re equal");
+                sessionUserIsInterested = true
+              } else {
+                sessionUserIsInterested = false
+              } 
+              res.render('job/single', { job: job, application: application, sessionUserId: sessionUserId });
+            });
+          })
+        }
+      })
+  .catch((error) => {
+    if (error.kind === 'ObjectId') {
+      error.status = 404;
+    }
+    next(error);
+  });
 });
 
 router.get('/:id/update', routeGuard, (req, res, next) => {

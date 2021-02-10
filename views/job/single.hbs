@@ -6,6 +6,13 @@
 </br>
 <a href="" target="_blank">Go there -></a>
 </br>
+<h2>{{sessionUserId}}</h2>
+{{#if sessionUserId}}
+    <p> {{sessionUserId}} is true</p>
+{{else}}
+    <p> {{sessionUserId}} is false</p>
+{{/if}}
+
  <form method="POST" action="">
     <button>I´M INTERESTED</button>
     <input type="text" id="input-title" name="job" value="{{job._id}}" required />  
@@ -20,4 +27,5 @@
 <a href="/job/{{job._id}}/update">Update job</a>
 {{#each application }} 
 <small>{{interested_user.firstname}} </small>
+<small>{{interested_user._id}} </small><br>
 {{/each}}

@@ -14,8 +14,16 @@ const bindUserToViewLocals = require('./middleware/bind-user-to-view-locals.js')
 const baseRouter = require('./routes/base');
 const authenticationRouter = require('./routes/authentication');
 const jobRouter = require('./routes/job');
+const hbs = require('hbs');
 
 const app = express();
+
+hbs.registerHelper('ifCond', function(v1, v2, options) {
+  if(v1 === v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
