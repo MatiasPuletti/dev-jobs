@@ -54,7 +54,8 @@ router.get('/:id', (req, res, next) => {
   const id = req.params.id;
   const sessionUserId = req.session.userId;
   let job;
-  let sessionUserIsInterested = false;
+  let userIsInterested = { interest: "Does not exist interest"};;
+
   Job.findById(id)
     .then((doc) => {
       job = doc;
@@ -66,7 +67,19 @@ router.get('/:id', (req, res, next) => {
         Application.find({ "job": id  })
           .populate('interested_user')
           .then((application) => {
-            res.render('job/single', { job: job, application: application });
+            console.log()
+            application.forEach(function(element, index) {
+              console.log(element.interested_user._id);
+              console.log(sessionUserId)
+              console.log(index);
+              if (element.interested_user._id === sessionUserId) {
+                userIsInterested = { interest: "It exists interest"};
+              } else {
+                userIsInterested = { interest: "Not found"};
+              };
+            });
+
+            res.render('job/single', { job, application, sessionUserId, userIsInterested });
           });
       }
     })
@@ -166,11 +179,11 @@ router.post('/:id/delete', routeGuard, (req, res, next) => {
 });
 
 router.post('/:id', routeGuard, (req, res, next) => {
-  console.log(req.body);
+  //console.log(req.body);
   const job = req.body.job;
-  console.log(job);
+  //console.log(job);
   const user = req.session.userId;
-  console.log(`user is ${user}`);
+  //console.log(`user is ${user}`);
 
   Application.create({
     job: job,

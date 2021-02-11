@@ -6,11 +6,16 @@
 </br>
 <a href="" target="_blank">Go there -></a>
 </br>
-<h2>{{sessionUserId}}</h2>
-{{#if sessionUserId}}
-    <p> {{sessionUserId}} is true</p>
+<h2>sessionUserId => {{sessionUserId}}</h2>
+<br/>
+<h2 style="color:tomato">{{userIsInterested.interest}}</h2>
+<p>But Application element.interested_user._id is {{application.interested_user._id}} </p>
+<p>And sessionUserId is {{sessionUserId}} </p>
+<br/>
+{{#if userIsInterested.interest }}
+    <p> {{sessionUserId}} interest is true {{interest}}</p>
 {{else}}
-    <p> {{sessionUserId}} is false</p>
+    <p> {{sessionUserId}} interest is false {{userIsInterested.interest}}</p>
 {{/if}}
 
  <form method="POST" action="">
