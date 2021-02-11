@@ -12,17 +12,20 @@
 <p>But Application element.interested_user._id is {{application.interested_user._id}} </p>
 <p>And sessionUserId is {{sessionUserId}} </p>
 <br/>
-{{#if userIsInterested.interest }}
-    <p> {{sessionUserId}} interest is true {{interest}}</p>
+{{#if userIsInterested }}
+    <!--<h1> {{sessionUserId}} interest is true</h1>-->
+    
+    <button>YOU HAVE ALREADY APPLIED</button>
+    
 {{else}}
-    <p> {{sessionUserId}} interest is false {{userIsInterested.interest}}</p>
-{{/if}}
-
- <form method="POST" action="">
+    <!--<h1> {{sessionUserId}} interest is false</h1>-->
+    <form method="POST" action="">
     <button>I´M INTERESTED</button>
     <input type="text" id="input-title" name="job" value="{{job._id}}" required />  
 
   </form>
+{{/if}}
+
 {{#if job.image}}
   <img src="{{job.image}}" alt="{{job.title}}">
 {{/if}}

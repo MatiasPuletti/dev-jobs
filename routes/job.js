@@ -53,7 +53,7 @@ router.get('/:id', (req, res, next) => {
   const id = req.params.id;
   const sessionUserId = req.session.userId;
   let job;
-  let userIsInterested = { interest: 'Does not exist interest' };
+  let userIsInterested = false;
 
   Job.findById(id)
     .then((doc) => {
@@ -76,9 +76,9 @@ router.get('/:id', (req, res, next) => {
                 element.interested_user._id.toString() ===
                 sessionUserId.toString()
               ) {
-                userIsInterested = { interest: 'It exists interest' };
+                userIsInterested = true;
               } else {
-                userIsInterested = { interest: 'Not found' };
+                userIsInterested = false;
               }
             });
 
