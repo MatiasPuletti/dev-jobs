@@ -7,7 +7,6 @@ const Job = require('../models/job');
 const Application = require('../models/application');
 const uploadMiddleware = require('./../middleware/file-upload');
 
-
 router.get('/create', routeGuard, (req, res, next) => {
   res.render('job/create');
 });
@@ -54,32 +53,41 @@ router.get('/:id', (req, res, next) => {
   const id = req.params.id;
   const sessionUserId = req.session.userId;
   let job;
-  let userIsInterested = { interest: "Does not exist interest"};;
+  let userIsInterested = { interest: 'Does not exist interest' };
 
   Job.findById(id)
     .then((doc) => {
       job = doc;
+      //return Promise.reject(error);
       if (job === null) {
         const error = new Error('Job does not exist.');
         error.status = 404;
         next(error);
       } else {
-        Application.find({ "job": id  })
+        Application.find({ job: id })
           .populate('interested_user')
           .then((application) => {
-            console.log()
-            application.forEach(function(element, index) {
+            console.log();
+            application.forEach(function (element, index) {
               console.log(element.interested_user._id);
-              console.log(sessionUserId)
+              console.log(sessionUserId);
               console.log(index);
-              if (element.interested_user._id === sessionUserId) {
-                userIsInterested = { interest: "It exists interest"};
+              if (
+                element.interested_user._id.toString() ===
+                sessionUserId.toString()
+              ) {
+                userIsInterested = { interest: 'It exists interest' };
               } else {
-                userIsInterested = { interest: "Not found"};
-              };
+                userIsInterested = { interest: 'Not found' };
+              }
             });
 
-            res.render('job/single', { job, application, sessionUserId, userIsInterested });
+            res.render('job/single', {
+              job,
+              application,
+              sessionUserId,
+              userIsInterested
+            });
           });
       }
     })
