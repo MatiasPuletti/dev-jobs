@@ -52,7 +52,36 @@ router.post(
 
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
-  const sessionUserId = req.session.userId
+  const sessionUserId = req.session.userId;
+  let job;
+  let sessionUserIsInterested = false;
+  Job.findById(id)
+    .then((doc) => {
+      job = doc;
+      if (job === null) {
+        const error = new Error('Job does not exist.');
+        error.status = 404;
+        next(error);
+      } else {
+        Application.find({ "job": id  })
+          .populate('interested_user')
+          .then((application) => {
+            res.render('job/single', { job: job, application: application });
+          });
+      }
+    })
+    .catch((error) => {
+      if (error.kind === 'ObjectId') {
+        error.status = 404;
+      }
+      next(error);
+    });
+});
+
+/*
+router.get('/:id', (req, res, next) => {
+  const id = req.params.id;
+  const sessionUserId = req.session.userId;
   let job;
   let sessionUserIsInterested = false;
   Job.findById(id)
@@ -86,6 +115,7 @@ router.get('/:id', (req, res, next) => {
     next(error);
   });
 });
+*/
 
 router.get('/:id/update', routeGuard, (req, res, next) => {
   const id = req.params.id;
