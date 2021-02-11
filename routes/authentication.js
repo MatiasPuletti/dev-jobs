@@ -18,11 +18,12 @@ router.post('/sign-up', uploadMiddleware.single('image'), (req, res, next) => {
     .hash(password, 10)
     .then((hash) => {
       console.log(userType);
+      console.log(req.file.path);
       return User.create({
         firstname,
         lastname,
         email,
-        image,
+        image: req.file.path,
         userType,
         passwordHashAndSalt: hash
       });
