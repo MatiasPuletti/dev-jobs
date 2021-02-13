@@ -1,14 +1,14 @@
-<h1>Update job: {{job.title}}</h1>
+<h1 class="titles">Edit your job: {{job.title}}</h1>
 
 <form method="POST">
  
-  <label for="input-title">Title</label>
+  <label for="input-title">&#128221 Title</label>
   <input type="text" id="input-title" name="title" placeholder="Title" />
 
 
-  <label for="input-category">Category</label>
+  <label for="input-category">&#128187 Category</label>
   <select name="category" id="input-category" required>
-    <option value="" selected disabled>Category</option> 
+    <option value="" selected disabled>Choose an option</option> 
     <option value="Web development">Web development</option>
     <option value="Mobile apps">Mobile apps</option>
     <option value="Game development">Game development</option>
@@ -19,7 +19,7 @@
   </select>
 
   <div>
-    <label for="input-skill">Skills</label>
+    <label for="input-skill">&#127891 Skills needed</label>
     <div>
       <input type="checkbox" id="input-checkbox-javascript" value="javascript" name="skill" />
       <label for="input-checkbox-javascript">JavaScript</label>
@@ -50,19 +50,19 @@
     </div>
   </div>
 
-  <label for="time">In how many days do you need this done?</label>
-  <input type="number" id="time" name="time">
+  <label for="time">&#9203 Project deadline</label>
+  <input type="number" id="time" name="time" placeholder="In days">
 
-  <label for="budget">Project budget</label>
-  <input type="number" id="budget" name="budget">
+  <label for="budget">&#128182 Project budget (€)</label>
+  <input type="number" id="budget" name="budget" placeholder="How much can you spend in this project?">
 
-  <label for="status">Project status</label>
+  <label for="status">&#128678 Project status</label>
   <select name="status" id="input-status" >
     <option value="Available" >Available</option> 
     <option value="Taken">Taken</option>
   </select>
 
-  <label for="input-image">Image</label>
+  <label for="input-image">&#128248 Image</label>
   <input type="file" id="input-image" name="image" accept="image/png, image/jpeg">
 
   <button>Update job</button>

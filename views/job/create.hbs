@@ -1,14 +1,14 @@
-<h1>Add a Job</h1>
+<h1 class="titles">Add a Job</h1>
 
 <form method="POST" enctype="multipart/form-data" >
 
-  <label for="input-title">Title</label>
-  <input type="text" id="input-title" name="title" placeholder="Title" required/>
+  <label for="input-title">&#128221 Title</label>
+  <input type="text" id="input-title" name="title" placeholder="Title of the project" required/>
 
 
-  <label for="input-category">Category</label>
+  <label for="input-category">&#128187 Category</label>
   <select name="category" id="input-category" required>
-    <option value="" selected disabled>Category</option> 
+    <option value="" selected disabled>Choose an option</option> 
     <option value="Web development">Web development</option>
     <option value="Mobile apps">Mobile apps</option>
     <option value="Game development">Game development</option>
@@ -19,7 +19,7 @@
   </select>
 
   <div>
-    <label for="input-skill">Skills needed</label>
+    <label for="input-skill">&#127891 Skills needed</label>
     <div>
       <input type="checkbox" id="input-checkbox-javascript" value="javascript" name="skill" />
       <label for="input-checkbox-javascript">JavaScript</label>
@@ -50,19 +50,19 @@
     </div>
   </div>
 
-  <label for="time">What's the deadline in days?</label>
-  <input type="number" id="time" name="time">
+  <label for="time">&#9203 Project deadline</label>
+  <input type="number" id="time" name="time" placeholder="In days">
 
-  <label for="budget">Project budget</label>
-  <input type="number" id="budget" name="budget">
+  <label for="budget">&#128182 Project budget (€)</label>
+  <input type="number" id="budget" name="budget" placeholder="How much can you spend in this project?">
 
-  <label for="status">Project status</label>
+  <label for="status">&#128678 Project status</label>
   <select name="status" id="input-status" >
     <option value="Available" >Available</option> 
   </select>
 
 
-  <label for="input-image">Image</label>
+  <label for="input-image">&#128248 Image</label>
   <input type="file" id="input-image" name="image" accept="image/png, image/jpeg">
 
   <button>Submit</button>

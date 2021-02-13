@@ -69,6 +69,7 @@ label {
   height: 6em;
   border-radius: 50%;
   object-fit: cover;
+  
 }
 
 form {
@@ -78,7 +79,7 @@ form {
 
 nav {
   font-family: 'JetBrainsMono-Medium';
-  font-size: 110%;
+  font-size: 100%;
 }
 
 .remove_button_css {
@@ -87,4 +88,8 @@ nav {
   border: 0px;
   box-sizing: none;
   background-color: transparent;
+}
+
+.titles {
+  text-align: center;
 }
