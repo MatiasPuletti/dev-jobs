@@ -5,11 +5,13 @@ const mongoose = require('mongoose');
 const schema = new mongoose.Schema({
   firstname: {
     type: String,
-    trim: true
+    trim: true,
+    required: true
   },
   lastname: {
     type: String,
-    trim: true
+    trim: true,
+    required: true
   },
   email: {
     type: String,
@@ -18,7 +20,8 @@ const schema = new mongoose.Schema({
     trim: true
   },
   image: {
-    type: String
+    type: String,
+    required: true
   },
   userType: {
     type: String,

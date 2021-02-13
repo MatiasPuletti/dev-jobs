@@ -1,23 +1,23 @@
 <form action="/authentication/sign-up" method="POST" enctype="multipart/form-data">
 
   <label for="input-firstname">First Name</label>
-  <input type="text" id="input-firstname" name="firstname" placeholder="Your First Name" />
+  <input type="text" id="input-firstname" name="firstname" placeholder="Your First Name" required />
 
   <label for="input-lastname">Last Name</label>
-  <input type="text" id="input-lastname" name="lastname" placeholder="Your Last Name" />
+  <input type="text" id="input-lastname" name="lastname" placeholder="Your Last Name" required/>
 
   <label for="input-email">Email</label>
-  <input type="email" id="input-email" name="email" placeholder="Your Email" />
+  <input type="email" id="input-email" name="email" placeholder="Your Email" required />
 
   <label for="input-password">Password</label>
-  <input type="password" name="password" id="input-password" placeholder="A Strong Password" />
+  <input type="password" name="password" id="input-password" placeholder="A Strong Password" required/>
 
   <label for="input-profile-picture">Profile Picture</label>
-  <input id="input-profile-picture" type="file" name="image" accept="image/png, image/jpeg">
+  <input id="input-profile-picture" type="file" name="image" accept="image/png, image/jpeg" required>
 
   <label for="input-userType">User Type</label>
   <select name="userType" id="input-userType" required>
-    <option value="" selected disabled>Choose your user type</option> <!-- Display empty placeholder value-->
+    <option value="" selected disabled>Choose your user type</option>
     <option value="publisher">Publisher - I want to publish a job</option>
     <option value="provider">Provider - I provide professional dev services</option>
   </select>
