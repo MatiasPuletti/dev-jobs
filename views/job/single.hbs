@@ -1,3 +1,23 @@
+<!--{{#ifCond v1 v2}}
+    {{v1}} is equal to {{v2}}
+{{else}}
+    {{v1}} is not equal to {{v2}}
+{{/ifCond}}-->
+
+<h2>1) {{application.job.title}}</h2>
+<h2>2) {{job.status}}</h2>
+<h2>3) {{job.creator}}</h2>
+<h2>4) {{job.interested_user}}</h2>
+<h2>5) {{job.accepted_provider}}</h2>
+<h2>6) {{sessionUserId}}</h2>
+
+{{#if sessionUserId}}
+<p>You can se this content</p>
+{{else}}
+<p>You must be logged in</p>
+{{/if}}
+
+
 <h1>{{job.title}}</h1>
 <small>Job category: {{job.category}}</small>
 <br>

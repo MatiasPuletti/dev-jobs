@@ -94,6 +94,22 @@ router.get('/:id', (req, res, next) => {
     });
 });
 
+router.post('/:id/interest/:interested_user', routeGuard, (req, res, next) => {
+  const jobId = req.params.id;
+  const data = req.body;
+  const interestedUser = req.params.interested_user;
+
+  Job.findByIdAndUpdate(jobId, {
+    interested_user: interestedUser
+  })
+    .then((job) => {
+      res.redirect(`/job/${job._id}`);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
 /*
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
