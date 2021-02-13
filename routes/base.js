@@ -17,19 +17,22 @@ router.get('/', (req, res, next) => {
     });
 });
 
+// Search jobs
 
-/*
 router.get('/search', (req, res, next) => {
-  Job.find()
-    .populate('creator')
+  const search = req.query.search;
+
+  Job.find({ skill: search })
     .then((job) => {
+      console.log(search);
+
       console.log(job);
       res.render('home', { job });
     })
     .catch((error) => {
       next(error);
     });
-});*/
+});
 
 router.get('/private', (req, res, next) => {
   if (req.user) {

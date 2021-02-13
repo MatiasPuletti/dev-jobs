@@ -83,3 +83,11 @@ textarea {
 label {
   margin-bottom: 0.5em;
 }
+
+
+.profile-picture {
+  width: 6em;
+  height: 6em;
+  border-radius: 50%;
+  object-fit: cover;
+}

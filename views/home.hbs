@@ -1,8 +1,13 @@
 <h1>Find your Dev Job</h1>
 
+<form action="/search" method="GET">
+<label for="input-search"></label>
+<input type="text" id="input-search" name="search" placeholder="Javascript, React, Rails... " />
+</form>
+
 {{#each job}}
 
-<h2>{{title}}</h2>
+<h1>{{title}}</h1>
 <span>{{skill}}</span></br>
 <span>To completed in: {{time}} days</span></br>
 <span>Project budget: €{{budget}}</span></br>
