@@ -197,6 +197,34 @@ router.post('/:id/delete', routeGuard, (req, res, next) => {
     });
 });
 
+/*router.get('/:id/assign', routeGuard, (req, res, next) => {
+  const id = req.params.id;
+  Job.findById(id)
+    .then((job) => {
+      res.render('job/assign', { job: job });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+*/
+
+router.post('/:id/assign/:interested_user', routeGuard, (req, res, next) => {
+  const jobId = req.params.id;
+  const data = req.body;
+  const assignedUser = req.params.interested_user;
+
+  Job.findByIdAndUpdate(jobId, {
+    accepted_provider: assignedUser
+  })
+    .then((job) => {
+      res.redirect(`/job/${job._id}`);
+    })
+    .catch((error) => {
+      next(error);
+    });
+});
+
 router.post('/:id', routeGuard, (req, res, next) => {
   //console.log(req.body);
   const job = req.body.job;

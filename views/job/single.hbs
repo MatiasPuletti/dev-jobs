@@ -36,7 +36,16 @@
 <a href="/job/{{job._id}}/delete">Delete job</a>
 </br>
 <a href="/job/{{job._id}}/update">Update job</a>
+
+
+<br/>
+<br/>
 {{#each application }} 
-<small>{{interested_user.firstname}} </small>
-<small>{{interested_user._id}} </small><br>
+<p>{{interested_user.firstname}} <small>{{interested_user._id}} </small></p>
+  <form method="POST" action="/job/{{job._id}}/assign/{{interested_user._id}}">
+    <button>Assign job to {{interested_user.firstname}} </button>
+    <input type="text" id="input-assignedUser" name="assignedUser" value="{{interested_user._id}}" />  
+
+  </form>
 {{/each}}
+
