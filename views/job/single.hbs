@@ -7,11 +7,26 @@
 <br>
 <small>Project budget: €{{job.budget}}</small>
 </br>
- <form method="POST" action="">
+<h2>sessionUserId => {{sessionUserId}}</h2>
+<br/>
+<h2 style="color:tomato">{{userIsInterested.interest}}</h2>
+<p>But Application element.interested_user._id is {{application.interested_user._id}} </p>
+<p>And sessionUserId is {{sessionUserId}} </p>
+<br/>
+{{#if userIsInterested }}
+    <!--<h1> {{sessionUserId}} interest is true</h1>-->
+    
+    <button>YOU HAVE ALREADY APPLIED</button>
+    
+{{else}}
+    <!--<h1> {{sessionUserId}} interest is false</h1>-->
+    <form method="POST" action="">
     <button>I´M INTERESTED</button>
     <input type="text" id="input-title" name="job" value="{{job._id}}" required />  
 
   </form>
+{{/if}}
+
 {{#if job.image}}
   <img src="{{job.image}}" alt="{{job.title}}">
 {{/if}}
@@ -23,4 +38,5 @@
 <a href="/job/{{job._id}}/update">Update job</a>
 {{#each application }} 
 <small>{{interested_user.firstname}} </small>
+<small>{{interested_user._id}} </small><br>
 {{/each}}
