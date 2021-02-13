@@ -1,10 +1,12 @@
 <h1>{{job.title}}</h1>
-<h4>{{job.category}}</h4>
+<h4>Job category: {{job.category}}</h4>
 <small>
 {{#each job.skill}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
 </small>
-</br>
-<a href="" target="_blank">Go there -></a>
+<br>
+<small>To complete in: {{job.time}} days</small>
+<br>
+<small>Project budget: €{{job.budget}}</small>
 </br>
 <h2>{{sessionUserId}}</h2>
 {{#if sessionUserId}}

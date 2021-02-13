@@ -1,15 +1,14 @@
-<h1>Welcome to Dev Jobs</h1>
+<h1>Find your Dev Job</h1>
 
 {{#each job}}
 
 <h2>{{title}}</h2>
 <span>{{skill}}</span></br>
-<span>{{time}}</span></br>
+<span>To completed in: {{time}} days</span></br>
+<span>Project budget: €{{budget}}</span></br>
 <span>{{_id}}</span></br>
-<span>{{title}}</span></br>
 <span>{{category}}</span></br>
-<span>{{creator.firstname}} {{creator.lastname}}</span></br>
-<span>{{comments}}</span></br>
+<span>Posted by: {{creator.firstname}} {{creator.lastname}}</span></br>
 <span>{{creationDate}}</span></br>
 <span>{{pdateDate}}</span></br>
 <a href="/job/{{_id}}" target="_blank">Link to job</a>

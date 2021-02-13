@@ -38,6 +38,8 @@ router.post(
       title: data.title,
       category: data.category,
       skill: skill,
+      time: data.time,
+      budget: data.budget,
       image: image,
       creator: req.user._id
     })

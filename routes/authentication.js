@@ -12,18 +12,20 @@ router.get('/sign-up', (req, res, next) => {
   res.render('sign-up');
 });
 
-router.post('/sign-up', (req, res, next) => {
-  const { firstname, lastname, email, password, userType } = req.body;
+router.post('/sign-up', uploadMiddleware.single('image'), (req, res, next) => {
+  const { firstname, lastname, email, password, image, userType } = req.body;
   bcryptjs
     .hash(password, 10)
     .then((hash) => {
       console.log(userType);
+      console.log(req.file.path);
       return User.create({
         firstname,
         lastname,
         email,
+        image: req.file.path,
         userType,
-        passwordHashAndSalt: hash        
+        passwordHashAndSalt: hash
       });
     })
     .then((user) => {

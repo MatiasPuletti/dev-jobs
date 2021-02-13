@@ -17,7 +17,10 @@ const schema = new mongoose.Schema({
     lowercase: true,
     trim: true
   },
-  userType:{
+  image: {
+    type: String
+  },
+  userType: {
     type: String,
     enum: ['publisher', 'provider'],
     required: true

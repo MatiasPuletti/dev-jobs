@@ -10,7 +10,15 @@ const jobSchema = new mongoose.Schema(
     },
     category: {
       type: String,
-      enum: ['book', 'video', 'article', 'blog', 'tweet', 'podcast', 'course'],
+      enum: [
+        'Web development',
+        'Mobile apps',
+        'Game development',
+        'Blockchain development',
+        'Cybersecurity',
+        'Bug fix',
+        'Chatbots'
+      ],
       required: true
     },
     skill: [
@@ -42,9 +50,8 @@ const jobSchema = new mongoose.Schema(
     time: {
       type: Number,
       min: 1,
-      max: 10,
-      required: true,
-      default: 3
+      max: 30,
+      required: true
     },
     image: {
       type: String
