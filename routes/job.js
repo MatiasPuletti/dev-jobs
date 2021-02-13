@@ -7,7 +7,6 @@ const Job = require('../models/job');
 const Application = require('../models/application');
 const uploadMiddleware = require('./../middleware/file-upload');
 
-
 router.get('/create', routeGuard, (req, res, next) => {
   res.render('job/create');
 });
@@ -54,7 +53,58 @@ router.post(
 
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
-  const sessionUserId = req.session.userId
+  const sessionUserId = req.session.userId;
+  let job;
+  let userIsInterested = false;
+
+  Job.findById(id)
+    .then((doc) => {
+      job = doc;
+      //return Promise.reject(error);
+      if (job === null) {
+        const error = new Error('Job does not exist.');
+        error.status = 404;
+        next(error);
+      } else {
+        Application.find({ job: id })
+          .populate('interested_user')
+          .then((application) => {
+            console.log();
+            application.forEach(function (element, index) {
+              console.log(element.interested_user._id);
+              console.log(sessionUserId);
+              console.log(index);
+              if (
+                element.interested_user._id.toString() ===
+                sessionUserId.toString()
+              ) {
+                userIsInterested = true;
+              } else {
+                userIsInterested = false;
+              }
+            });
+
+            res.render('job/single', {
+              job,
+              application,
+              sessionUserId,
+              userIsInterested
+            });
+          });
+      }
+    })
+    .catch((error) => {
+      if (error.kind === 'ObjectId') {
+        error.status = 404;
+      }
+      next(error);
+    });
+});
+
+/*
+router.get('/:id', (req, res, next) => {
+  const id = req.params.id;
+  const sessionUserId = req.session.userId;
   let job;
   let sessionUserIsInterested = false;
   Job.findById(id)
@@ -88,6 +138,7 @@ router.get('/:id', (req, res, next) => {
     next(error);
   });
 });
+*/
 
 router.get('/:id/update', routeGuard, (req, res, next) => {
   const id = req.params.id;
@@ -138,11 +189,11 @@ router.post('/:id/delete', routeGuard, (req, res, next) => {
 });
 
 router.post('/:id', routeGuard, (req, res, next) => {
-  console.log(req.body);
+  //console.log(req.body);
   const job = req.body.job;
-  console.log(job);
+  //console.log(job);
   const user = req.session.userId;
-  console.log(`user is ${user}`);
+  //console.log(`user is ${user}`);
 
   Application.create({
     job: job,
