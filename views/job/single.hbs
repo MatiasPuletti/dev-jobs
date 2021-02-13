@@ -1,8 +1,7 @@
 <h1>{{job.title}}</h1>
-<h4>Job category: {{job.category}}</h4>
-<small>
-{{#each job.skill}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
-</small>
+<small>Job category: {{job.category}}</small>
+<br>
+<small> Skills needed: {{job.skill}}</small>
 <br>
 <small>To complete in: {{job.time}} days</small>
 <br>
@@ -17,6 +16,8 @@
   <img src="{{job.image}}" alt="{{job.title}}">
 {{/if}}
 </br>
+<small>Status: this project is {{job.status}}</small>
+<br>
 <a href="/job/{{job._id}}/delete">Delete job</a>
 </br>
 <a href="/job/{{job._id}}/update">Update job</a>

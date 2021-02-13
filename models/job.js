@@ -56,6 +56,11 @@ const jobSchema = new mongoose.Schema(
     image: {
       type: String
     },
+    status: {
+      type: String,
+      enum: ['Available', 'Taken'],
+      required: true
+    },
     creator: {
       type: mongoose.Types.ObjectId,
       ref: 'User'

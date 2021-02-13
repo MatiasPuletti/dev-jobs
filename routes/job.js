@@ -18,16 +18,6 @@ router.post(
   (req, res, next) => {
     const data = req.body;
 
-    let skill;
-
-    if (typeof data.skill === 'string') {
-      skill = [data.skill];
-    } else if (data.skill instanceof Array) {
-      skill = data.skill;
-    } else {
-      skill = [];
-    }
-
     let image;
     if (req.file) {
       image = req.file.path;
@@ -40,6 +30,7 @@ router.post(
       time: data.time,
       budget: data.budget,
       image: image,
+      status: data.status,
       creator: req.user._id
     })
       .then((job) => {
@@ -60,7 +51,7 @@ router.get('/:id', (req, res, next) => {
         error.status = 404;
         next(error);
       } else {
-        Application.find({ "job": id  })
+        Application.find({ job: id })
           .populate('interested_user')
           .then((application) => {
             res.render('job/single', { job: job, application: application });
@@ -89,9 +80,25 @@ router.get('/:id/update', routeGuard, (req, res, next) => {
 router.post('/:id/update', routeGuard, (req, res, next) => {
   const id = req.params.id;
   const data = req.body;
+
+  let skill;
+
+  if (typeof data.skill === 'string') {
+    skill = [data.skill];
+  } else if (data.skill instanceof Array) {
+    skill = data.skill;
+  } else {
+    skill = [];
+  }
+
   Job.findByIdAndUpdate(id, {
     title: data.title,
-    image: data.image || undefined
+    image: data.image || undefined,
+    status: data.status,
+    category: data.category,
+    skill: skill,
+    time: data.time,
+    budget: data.budget
   })
     .then((job) => {
       res.redirect(`/job/${job._id}`);
