@@ -10,7 +10,7 @@ $grey: hsl(0, 0, 90%);
 }
 
 body {
-  max-width: 52em;
+  max-width: 60%;
   padding: 0 1em;
   margin: 0 auto;
   font-family: sans-serif;
@@ -21,21 +21,6 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-nav {
-  display: flex;
-  a,
-  button {
-    padding: 1em 0;
-    border: 0;
-    &:not(:last-child) {
-      margin-right: 1em;
-    }
-    &:first-child {
-      margin-right: auto;
-    }
-  }
 }
 
 h1,
@@ -52,11 +37,6 @@ p {
 img {
   width: 100%;
   max-width: 100%;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
 }
 
 input:not([type='checkbox']),
@@ -84,10 +64,27 @@ label {
   margin-bottom: 0.5em;
 }
 
-
 .profile-picture {
   width: 6em;
   height: 6em;
   border-radius: 50%;
   object-fit: cover;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  font-family: 'JetBrainsMono-Medium';
+  font-size: 110%;
+}
+
+.remove_button_css {
+  outline: none;
+  padding: 5px;
+  border: 0px;
+  box-sizing: none;
+  background-color: transparent;
 }
