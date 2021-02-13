@@ -17,6 +17,20 @@ router.get('/', (req, res, next) => {
     });
 });
 
+
+/*
+router.get('/search', (req, res, next) => {
+  Job.find()
+    .populate('creator')
+    .then((job) => {
+      console.log(job);
+      res.render('home', { job });
+    })
+    .catch((error) => {
+      next(error);
+    });
+});*/
+
 router.get('/private', (req, res, next) => {
   if (req.user) {
     res.render('private');

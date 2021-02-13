@@ -23,6 +23,8 @@ router.post(
       image = req.file.path;
     }
 
+    let skill;
+
     Job.create({
       title: data.title,
       category: data.category,
