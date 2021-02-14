@@ -33,9 +33,11 @@
 </br>
 <small>Status: this project is {{job.status}}</small>
 <br>
-<a href="/job/{{job._id}}/delete">Delete job</a>
-</br>
-<a href="/job/{{job._id}}/update">Update job</a>
+<br>
+<div  class="d-flex align-items-start">
+<a href="/job/{{job._id}}/update" class="btn btn-warning rounded">Update job</a>
+<a href="/job/{{job._id}}/delete" class="btn btn-danger rounded">Delete job</a>
+</div>
 {{#each application }} 
 <small>{{interested_user.firstname}} </small>
 <small>{{interested_user._id}} </small><br>
