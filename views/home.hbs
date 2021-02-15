@@ -9,6 +9,11 @@
 
 <h1>{{title}}</h1>
 <span>{{skill}}</span></br>
+<ul class="skill_list">
+  {{#each skill}}
+  <li>{{this}}</li>
+  {{/each}}
+</ul>
 <span>To completed in: {{time}} days</span></br>
 <span>Project budget: €{{budget}}</span></br>
 <span>{{category}}</span></br>

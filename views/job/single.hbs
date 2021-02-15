@@ -4,35 +4,93 @@
     {{v1}} is not equal to {{v2}}
 {{/ifCond}}-->
 
-<h2>1) {{application.job.title}}</h2>
-<h2>2) {{job.status}}</h2>
-<h2>3) {{job.creator}}</h2>
-<h2>4) {{job.interested_user}}</h2>
-<h2>5) {{job.accepted_provider}}</h2>
-<h2>6) {{sessionUserId}}</h2>
-
-{{#if sessionUserId}}
-<p>You can se this content</p>
-{{else}}
-<p>You must be logged in</p>
-{{/if}}
-
 
 <h1>{{job.title}}</h1>
+
 <small>Job category: {{job.category}}</small>
 <br>
-<small>Skills needed: {{job.skill}}</small>
+<small>Skills needed: 
+<ul class="skill_list">
+  {{#each job.skill}}
+  <li>{{this}}</li>
+  {{/each}}
+</ul>
+</small>
 <br>
 <small>To complete in: {{job.time}} days</small>
 <br>
 <small>Project budget: €{{job.budget}}</small>
 </br>
-<h2>sessionUserId => {{sessionUserId}}</h2>
+
+
+<h1>{{job.creator.firstname}}'s Profile</h1>
+<img src="{{job.creator.image}}" alt="{{title}}" class="profile-picture"><div>
+<span><strong>Name</strong>: {{job.creator.firstname}}</span>
+<br />
+<span><strong>Email</strong>: {{job.creator.email}}</span>
+
+<h4>Title: {{job.title}}</h4>
+<h4>Status: {{job.status}}</h4>
+<h4>Creator: {{job.creator}}</h4>
+<h4>Interested User: {{job.interested_user}}</h4>
+<h4>Accepterd Provider: {{job.accepted_provider}}</h4>
+
+{{#ifCond sessionUserId job.creator}}
+<!-- job creator view -->
+<p>sessionUserId and jpob.creator are the same</p>
+
+
+{{else}}
+<!-- not creator view -->
+
+<p>sessionUserId and job.creator are NOT the same</p>
+{{/ifCond}}
+
+
+{{#if job.image}}
+  <img src="{{job.image}}" alt="{{job.title}}">
+{{/if}}
+</br>
+<small>Status: this project is {{job.status}}</small>
+<br>
+
+<!-- job creator view -->
+<h1 style="color:green"> job creator view</h1>
+
+<a href="/job/{{job._id}}/delete">Delete job</a>
+</br>
+<a href="/job/{{job._id}}/update">Update job</a>
+
 <br/>
-<h2 style="color:tomato">{{userIsInterested.interest}}</h2>
-<p>But Application element.interested_user._id is {{application.interested_user._id}} </p>
-<p>And sessionUserId is {{sessionUserId}} </p>
 <br/>
+
+{{#each application }} 
+<p>{{interested_user.firstname}} <small>{{interested_user._id}} </small></p>
+  <form method="POST" action="/job/{{job._id}}/assign/{{interested_user._id}}">
+    <button>Assign job to {{interested_user.firstname}} </button>
+    <input type="text" id="input-assignedUser" name="assignedUser" value="{{interested_user._id}}" />  
+
+  </form>
+{{/each}}
+
+<!-- visitor view -->
+<h1 style="color:blue"> visitor view</h1>
+
+<h1>{{user.firstname}}'s Profile</h1>
+<img src="{{user.image}}" alt="{{title}}" class="profile-picture"><div>
+<span><strong>Name</strong>: {{user.firstname}}</span>
+<br />
+<span><strong>Email</strong>: {{user.email}}</span>
+
+<h4>userId: {{sessionUser.userId}}</h4>
+<h4>firstname: {{sessionUser.firstname}}</h4>
+<h4>lastname: {{sessionUser.lastname}}</h4>
+<h4>email: {{sessionUser.email}}</h4>
+<h4>userType: {{sessionUser.userType}}</h4>
+<h4>{{user.firstname}}</h4>
+<h4>sessionUserId => {{sessionUserId}}</h4>
+<br/>
+
 {{#if userIsInterested }}
     <!--<h1> {{sessionUserId}} interest is true</h1>-->
     
@@ -46,26 +104,3 @@
 
   </form>
 {{/if}}
-
-{{#if job.image}}
-  <img src="{{job.image}}" alt="{{job.title}}">
-{{/if}}
-</br>
-<small>Status: this project is {{job.status}}</small>
-<br>
-<a href="/job/{{job._id}}/delete">Delete job</a>
-</br>
-<a href="/job/{{job._id}}/update">Update job</a>
-
-
-<br/>
-<br/>
-{{#each application }} 
-<p>{{interested_user.firstname}} <small>{{interested_user._id}} </small></p>
-  <form method="POST" action="/job/{{job._id}}/assign/{{interested_user._id}}">
-    <button>Assign job to {{interested_user.firstname}} </button>
-    <input type="text" id="input-assignedUser" name="assignedUser" value="{{interested_user._id}}" />  
-
-  </form>
-{{/each}}
-

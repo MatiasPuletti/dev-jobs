@@ -46,13 +46,19 @@ router.post(
 
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
-  const sessionUserId = req.session.userId;
+  const sessionUser = req.session;
   let job;
   let userIsInterested = false;
+  console.log(req.session);
+  console.log(sessionUser.email);
+
+  Application.find;
 
   Job.findById(id)
+    .populate('creator')
     .then((doc) => {
       job = doc;
+
       //return Promise.reject(error);
       if (job === null) {
         const error = new Error('Job does not exist.');
@@ -64,12 +70,12 @@ router.get('/:id', (req, res, next) => {
           .then((application) => {
             console.log();
             application.forEach(function (element, index) {
-              console.log(element.interested_user._id);
-              console.log(sessionUserId);
-              console.log(index);
+              //console.log(element.interested_user._id);
+              //console.log(sessionUser.userId);
+              //console.log(index);
               if (
                 element.interested_user._id.toString() ===
-                sessionUserId.toString()
+                sessionUser.userId.toString()
               ) {
                 userIsInterested = true;
               } else {
@@ -80,8 +86,8 @@ router.get('/:id', (req, res, next) => {
             res.render('job/single', {
               job,
               application,
-              sessionUserId,
-              userIsInterested
+              userIsInterested,
+              sessionUser
             });
           });
       }
