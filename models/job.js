@@ -24,6 +24,7 @@ const jobSchema = new mongoose.Schema(
     skill: [
       {
         type: String,
+        required: true,
         enum: [
           'javascript',
           'css',
@@ -45,12 +46,12 @@ const jobSchema = new mongoose.Schema(
       }
     ],
     budget: {
-      type: Number
+      type: Number,
+      required: true
     },
     time: {
       type: Number,
       min: 1,
-      max: 30,
       required: true
     },
     image: {
