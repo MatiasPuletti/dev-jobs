@@ -47,8 +47,11 @@ router.post(
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
   const sessionUser = req.session;
+  const sessionUserStr = sessionUser.userId.toString();
   let job;
   let userIsInterested = false;
+  let creatorStr;
+
   console.log(req.session);
   console.log(sessionUser.email);
 
@@ -57,6 +60,7 @@ router.get('/:id', (req, res, next) => {
   Job.findById(id)
     .populate('creator')
     .then((doc) => {
+      creatorStr = doc.creator._id.toString();
       job = doc;
 
       //return Promise.reject(error);
@@ -87,7 +91,9 @@ router.get('/:id', (req, res, next) => {
               job,
               application,
               userIsInterested,
-              sessionUser
+              sessionUser,
+              sessionUserStr,
+              creatorStr
             });
           });
       }
