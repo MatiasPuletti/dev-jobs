@@ -1,0 +1,32 @@
+<!-- visitor view -->
+
+<h1 style="color:blue"> visitor view</h1>
+
+<h1>{{user.firstname}}'s Profile</h1>
+<img src="{{user.image}}" alt="{{title}}" class="profile-picture"><div>
+<span><strong>Name</strong>: {{user.firstname}}</span>
+<br />
+<span><strong>Email</strong>: {{user.email}}</span>
+
+<h4>userId: {{sessionUser.userId}}</h4>
+<h4>firstname: {{sessionUser.firstname}}</h4>
+<h4>lastname: {{sessionUser.lastname}}</h4>
+<h4>email: {{sessionUser.email}}</h4>
+<h4>userType: {{sessionUser.userType}}</h4>
+<h4>{{user.firstname}}</h4>
+<h4>sessionUserId => {{sessionUserId}}</h4>
+<br/>
+
+{{#if userIsInterested }}
+    <!--<h1> {{sessionUserId}} interest is true</h1>-->
+    
+    <button>YOU HAVE ALREADY APPLIED</button>
+    
+{{else}}
+    <!--<h1> {{sessionUserId}} interest is false</h1>-->
+    <form method="POST" action="">
+    <button>I´M INTERESTED</button>
+    <input type="text" id="input-title" name="job" value="{{job._id}}" required />  
+
+  </form>
+{{/if}}

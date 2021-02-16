@@ -56,6 +56,10 @@ router.post('/sign-in', (req, res, next) => {
     .then((result) => {
       if (result) {
         req.session.userId = user._id;
+        req.session.firstname = user.firstname;
+        req.session.lastname = user.lastname;
+        req.session.email = user.email;
+        req.session.userType = user.userType;
         res.redirect('/private');
       } else {
         return Promise.reject(new Error('Wrong password.'));
