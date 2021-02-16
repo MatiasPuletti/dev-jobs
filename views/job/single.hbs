@@ -4,9 +4,9 @@
     {{v1}} is not equal to {{v2}}
 {{/ifCond}}-->
 
-<h2>{{user._id}}</h2>
-<h2>{{sessionUser.userId}}</h2>
-<h2>{{job.creator._id}}</h2>
+<h2>user._id: {{user._id}}</h2>
+<h2>session.userId: {{session.userId}}</h2>
+<h2>job.creator._id: {{job.creator._id}}</h2>
 
 
 
@@ -50,6 +50,9 @@
 </main>
 </section>
 
+{{#if user}}
+
+
 {{#ifCond sessionUserStr creatorStr}}
 <!-- job creator view -->
 <p>job creator view</p>
@@ -60,6 +63,7 @@
 {{> singlevisitor}}
 {{/ifCond}}
 
+{{/if}}
 
 
 

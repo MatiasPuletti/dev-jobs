@@ -46,16 +46,23 @@ router.post(
 
 router.get('/:id', (req, res, next) => {
   const id = req.params.id;
-  const sessionUser = req.session;
-  const sessionUserStr = sessionUser.userId.toString();
+  const session = req.session;
   let job;
   let userIsInterested = false;
   let creatorStr;
-
+  let sessionUserStr;
+  
+  console.log('-----------------AQUI---------------------');
   console.log(req.session);
-  console.log(sessionUser.email);
+  console.log(req.session.userId);
 
-  Application.find;
+  /*
+  if(!req.session.userId){
+    console.log('!req.session.userId')
+  } else {
+    console.log('req.session.userId')
+  }
+  */
 
   Job.findById(id)
     .populate('creator')
@@ -72,14 +79,21 @@ router.get('/:id', (req, res, next) => {
         Application.find({ job: id })
           .populate('interested_user')
           .then((application) => {
-            console.log();
+
+            
+            if(!req.session.userId){
+              session.userId = 0;
+            } else {     
+              sessionUserStr = session.userId.toString();
+            }
+            
             application.forEach(function (element, index) {
               //console.log(element.interested_user._id);
-              //console.log(sessionUser.userId);
+              //console.log(session.userId);
               //console.log(index);
               if (
                 element.interested_user._id.toString() ===
-                sessionUser.userId.toString()
+                session.userId.toString()
               ) {
                 userIsInterested = true;
               } else {
@@ -90,10 +104,9 @@ router.get('/:id', (req, res, next) => {
             res.render('job/single', {
               job,
               application,
-              userIsInterested,
-              sessionUser,
+              userIsInterested,            
+              creatorStr,
               sessionUserStr,
-              creatorStr
             });
           });
       }
