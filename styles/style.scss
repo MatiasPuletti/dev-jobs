@@ -47,12 +47,9 @@ select,
 button,
 .btn {
   padding: 1em;
-  border: 1px solid $grey;
   border-radius: 0;
   margin-bottom: 1em;
   font: inherit;
-  color: inherit;
-  background-color: transparent;
 }
 
 textarea {
@@ -91,4 +88,17 @@ nav {
 
 .titles {
   text-align: center;
+}
+
+.warning {
+  width: 320px;
+  height: 320px;
+  display: flex;
+  margin: auto;
+}
+
+.confirm-deletion {
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
