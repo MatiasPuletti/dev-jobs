@@ -27,6 +27,9 @@
 {{#if job.image}}
   <img style= "width:300px" src="{{job.image}}" alt="{{job.title}}">
 {{/if}}
+
+<h3>Job description: {{job.description}}</h3>
+
 </main>
 </section>
 
@@ -50,8 +53,8 @@
 </main>
 </section>
 
-{{#if user}}
 
+{{#if user}}
 
 {{#ifCond sessionUserStr creatorStr}}
 <!-- job creator view -->

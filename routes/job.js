@@ -28,6 +28,7 @@ router.post(
     Job.create({
       title: data.title,
       category: data.category,
+      description: data.description,
       skill: data.skill,
       time: data.time,
       budget: data.budget,
@@ -51,7 +52,7 @@ router.get('/:id', (req, res, next) => {
   let userIsInterested = false;
   let creatorStr;
   let sessionUserStr;
-  
+
   console.log('-----------------AQUI---------------------');
   console.log(req.session);
   console.log(req.session.userId);
@@ -79,14 +80,12 @@ router.get('/:id', (req, res, next) => {
         Application.find({ job: id })
           .populate('interested_user')
           .then((application) => {
-
-            
-            if(!req.session.userId){
+            if (!req.session.userId) {
               session.userId = 0;
-            } else {     
+            } else {
               sessionUserStr = session.userId.toString();
             }
-            
+
             application.forEach(function (element, index) {
               //console.log(element.interested_user._id);
               //console.log(session.userId);
@@ -104,9 +103,9 @@ router.get('/:id', (req, res, next) => {
             res.render('job/single', {
               job,
               application,
-              userIsInterested,            
+              userIsInterested,
               creatorStr,
-              sessionUserStr,
+              sessionUserStr
             });
           });
       }
@@ -203,6 +202,7 @@ router.post('/:id/update', routeGuard, (req, res, next) => {
     title: data.title,
     image: data.image || undefined,
     status: data.status,
+    description: data.description,
     category: data.category,
     skill: skill,
     time: data.time,
