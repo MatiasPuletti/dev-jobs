@@ -28,7 +28,7 @@ router.post(
     Job.create({
       title: data.title,
       category: data.category,
-      skill: skill,
+      skill: data.skill,
       time: data.time,
       budget: data.budget,
       image: image,

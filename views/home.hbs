@@ -6,10 +6,7 @@
 </form>
 
 
-
-
-    {{#each job}}
-
+{{#each job}}
     <h1>{{title}}</h1>
     <span>&#129504 {{skill}}</span></br>
     <span>&#9203 {{time}} days</span></br>
@@ -20,7 +17,6 @@
     <span>{{creationDate}}</span></br>
     <span>{{pdateDate}}</span></br>
     <a href="/job/{{_id}}" target="_blank" class="btn btn-primary rounded">Check this job</a>
-
-    {{/each}}
-
+    <div class="job-border"></div>
+{{/each}}
 
