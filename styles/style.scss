@@ -49,6 +49,10 @@ button,
   font: inherit;
 }
 
+input {
+  border-style:none;
+}
+
 label {
   margin-bottom: 0.5em;
 }
@@ -96,7 +100,12 @@ nav {
 }
 
 .job-border {
-  border-bottom: 1px solid #e9ebed;
   display: flex;
   align-items: center;
+}
+
+.carta {
+  margin-top: 15px;
+  margin-bottom: 40px;
+
 }

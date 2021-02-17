@@ -3,11 +3,11 @@
 <form method="POST">
  
   <label for="input-title">&#128221 Title</label>
-  <input type="text" id="input-title" name="title" placeholder="Title" />
+  <input type="text" id="input-title" name="title" placeholder="Title" class="shadow p-3 mb-5 bg-white rounded border" />
 
 
   <label for="input-category">&#128187 Category</label>
-  <select name="category" id="input-category" required>
+  <select name="category" id="input-category" class="shadow p-3 mb-5 bg-white rounded border" required>
     <option value="" selected disabled>Choose an option</option> 
     <option value="Web development">Web development</option>
     <option value="Mobile apps">Mobile apps</option>
@@ -51,22 +51,22 @@
   </div>
 
   <label for="time">&#9203 Project deadline</label>
-  <input type="number" id="time" name="time" placeholder="In days">
+  <input type="number" id="time" name="time" placeholder="In days" class="shadow p-3 mb-5 bg-white rounded border">
 
   <label for="budget">&#128182 Project budget (€)</label>
-  <input type="number" id="budget" name="budget" placeholder="How much can you spend in this project?">
+  <input type="number" id="budget" name="budget" placeholder="How much can you spend in this project?" class="shadow p-3 mb-5 bg-white rounded border">
 
   <label for="status">&#128678 Project status</label>
-  <select name="status" id="input-status" >
+  <select name="status" id="input-status" class="shadow p-3 mb-5 bg-white rounded border" >
     <option value="Available" >Available</option> 
     <option value="Taken">Taken</option>
   </select>
 
   <label for="input-image">&#128248 Image</label>
-  <input type="file" id="input-image" name="image" accept="image/png, image/jpeg">
+  <input type="file" id="input-image" name="image" accept="image/png, image/jpeg" class="shadow p-3 mb-5 bg-white rounded border">
   
   <label for="input-description">&#128221 Description</label>
-  <input type="text" id="input-description" name="description" placeholder="Could you share more details about the project?" required/>
+  <input type="text" id="input-description" name="description" placeholder="Could you share more details about the project?" class="shadow p-3 mb-5 bg-white rounded border" required/>
 
   <button class="btn btn-primary rounded">Update job</button>
 </form>
