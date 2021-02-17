@@ -1,0 +1,43 @@
+<h1 class="titles">Searchtest</h1>
+
+  <header>
+    <div id="search-box"></div>
+  </header>
+
+  <main>
+      <div id="hits"></div>
+      <div id="pagination"></div>
+  </main>
+
+  <script type="text/html" id="hit-template">
+    <div class="hit">
+      <p class="hit-name">
+        {{#helpers.highlight}}{ "attribute": "firstname" }{{/helpers.highlight}}
+        {{#helpers.highlight}}{ "attribute": "lastname" }{{/helpers.highlight}}
+      </p>
+    </div>
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/algoliasearch@4.5.1/dist/algoliasearch-lite.umd.js" integrity="sha256-EXPXz4W6pQgfYY3yTpnDa3OH8/EPn16ciVsPQ/ypsjk=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@4.8.3/dist/instantsearch.production.min.js" integrity="sha256-LAGhRRdtVoD6RLo2qDQsU2mp+XVSciKRC8XPOBWmofM=" crossorigin="anonymous"></script>
+  <script src="app.js"></script>
+
+
+
+
+    {{#each job}}
+
+    <h1>{{title}}</h1>
+    <span>&#127891 {{skill}}</span></br>
+    <span>&#9203 {{time}} days</span></br>
+    <span>&#128182 €{{budget}}</span></br>
+    <span>&#128187 {{category}}</span></br>
+    <span>&#128100 {{creator.firstname}} {{creator.lastname}}</span></br>
+    <span>&#128678 {{status}}</span></br>
+    <span>{{creationDate}}</span></br>
+    <span>{{pdateDate}}</span></br>
+    <a href="/job/{{_id}}" target="_blank" class="btn btn-primary rounded">Check this job</a>
+
+    {{/each}}
+
+
