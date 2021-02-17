@@ -66,6 +66,7 @@ label {
   height: 6em;
   border-radius: 50%;
   object-fit: cover;
+  margin-bottom: 10px;
 }
 
 form {
@@ -91,14 +92,14 @@ nav {
 }
 
 .warning {
-  width: 320px;
-  height: 320px;
+  width: 200px;
+  height: 200px;
   display: flex;
   margin: auto;
 }
 
 .confirm-deletion {
   text-align: center;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
