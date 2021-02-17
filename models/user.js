@@ -19,6 +19,14 @@ const schema = new mongoose.Schema({
     lowercase: true,
     trim: true
   },
+  location: {
+    type: String,
+    required: true
+  },
+  language: {
+    type: String,
+    required: true
+  },
   image: {
     type: String,
     required: true
