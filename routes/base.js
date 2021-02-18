@@ -19,7 +19,10 @@ router.get('/', (req, res, next) => {
 
 // Search jobs
 
+<<<<<<< HEAD
 //{ $regex: /search/i }
+=======
+>>>>>>> main
 
 router.get('/search', (req, res, next) => {
   const search = req.query.search;

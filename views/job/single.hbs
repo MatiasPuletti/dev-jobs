@@ -1,44 +1,72 @@
-<h1>{{job.title}}</h1>
-<small>Job category: {{job.category}}</small>
-<br>
-<small>Skills needed: {{job.skill}}</small>
-<br>
-<small>To complete in: {{job.time}} days</small>
-<br>
-<small>Project budget: €{{job.budget}}</small>
-</br>
-<h2>sessionUserId => {{sessionUserId}}</h2>
-<br/>
-<h2 style="color:tomato">{{userIsInterested.interest}}</h2>
-<p>But Application element.interested_user._id is {{application.interested_user._id}} </p>
-<p>And sessionUserId is {{sessionUserId}} </p>
-<br/>
-{{#if userIsInterested }}
-    <!--<h1> {{sessionUserId}} interest is true</h1>-->
-    
-    <button>YOU HAVE ALREADY APPLIED</button>
-    
+<!--{{#ifCond v1 v2}}
+    {{v1}} is equal to {{v2}}
 {{else}}
-    <!--<h1> {{sessionUserId}} interest is false</h1>-->
-    <form method="POST" action="">
-    <button>I´M INTERESTED</button>
-    <input type="text" id="input-title" name="job" value="{{job._id}}" required />  
+    {{v1}} is not equal to {{v2}}
+{{/ifCond}}-->
 
-  </form>
-{{/if}}
+<h2>user._id: {{user._id}}</h2>
+<h2>session.userId: {{session.userId}}</h2>
+<h2>job.creator._id: {{job.creator._id}}</h2>
 
+
+
+<section id="card-job">
+  <main style="background-color:aliceblue; padding:2rem;margin-bottom:2rem ">
+<h1>{{job.title}}</h1>
+  
+<h3>Job category: {{job.category}}</h3>
+<h3>Skills needed: </h3>
+<ul class="skill_list">
+  {{#each job.skill}}
+  <li>{{this}}</li>
+  {{/each}}
+</ul>
+
+<h3>To complete in: {{job.time}} days</h3>
+<h3>Project budget: €{{job.budget}}</h3>
 {{#if job.image}}
-  <img src="{{job.image}}" alt="{{job.title}}">
+  <img style= "width:300px" src="{{job.image}}" alt="{{job.title}}">
 {{/if}}
-</br>
-<small>Status: this project is {{job.status}}</small>
-<br>
-<br>
-<div  class="d-flex align-items-start">
-<a href="/job/{{job._id}}/update" class="btn btn-warning rounded">Update job</a>
-<a href="/job/{{job._id}}/delete" class="btn btn-danger rounded">Delete job</a>
-</div>
-{{#each application }} 
-<small>{{interested_user.firstname}} </small>
-<small>{{interested_user._id}} </small><br>
-{{/each}}
+
+<h3>Job description: {{job.description}}</h3>
+
+</main>
+</section>
+
+<section id="card-publisher">
+  <main style="background-color:rgb(241, 255, 240); padding:2rem; margin-bottom:2rem">
+<h1>Publisher: {{job.creator.firstname}}'s</h1>
+<img src="{{job.creator.image}}" alt="{{title}}" class="profile-picture"><div>
+<span><strong>Name</strong>: {{job.creator.firstname}}</span>
+<br />
+<span><strong>Email</strong>: {{job.creator.email}}</span>
+<br />
+<span><strong>Title: {{job.title}}</span>
+<br />
+<span><strong>Status: {{job.status}}</span>
+<br />
+<span><strong>Interested User: {{job.interested_user}}</span>
+<br />
+<span><strong>Accepterd Provider: {{job.accepted_provider}}</span>
+<br />
+<span><strong>Creator: {{job.creator}}</span>
+</main>
+</section>
+
+
+{{#if user}}
+
+{{#ifCond sessionUserStr creatorStr}}
+<!-- job creator view -->
+<p>job creator view</p>
+{{> singlecreator}}
+{{else}}
+<!-- visitor view -->
+<p>visitor view</p>
+{{> singlevisitor}}
+{{/ifCond}}
+
+{{/if}}
+
+
+

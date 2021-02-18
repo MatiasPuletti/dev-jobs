@@ -18,12 +18,14 @@ const hbs = require('hbs');
 
 const app = express();
 
+hbs.registerPartials('views/partials');
 hbs.registerHelper('ifCond', function(v1, v2, options) {
-  if(v1 === v2) {
+  if (v1 === v2) {
     return options.fn(this);
   }
   return options.inverse(this);
 });
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

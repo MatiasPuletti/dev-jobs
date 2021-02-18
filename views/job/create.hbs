@@ -3,11 +3,11 @@
 <form method="POST" enctype="multipart/form-data" >
 
   <label for="input-title">&#128221 Title</label>
-  <input type="text" id="input-title" name="title" placeholder="Title of the project" required/>
+  <input type="text" id="input-title" name="title" placeholder="Title of the project" class="shadow p-3 mb-5 bg-white rounded border" required/>
 
 
   <label for="input-category">&#128187 Category</label>
-  <select name="category" id="input-category" required>
+  <select name="category" id="input-category" class="shadow p-3 mb-5 bg-white rounded border" required>
     <option value="" selected disabled>Choose an option</option> 
     <option value="Web development">Web development</option>
     <option value="Mobile apps">Mobile apps</option>
@@ -19,7 +19,7 @@
   </select>
 
   <div>
-    <label for="input-skill">&#127891 Skills needed</label>
+    <label for="input-skill">&#129504 Skills needed</label>
     <div>
       <input type="checkbox" id="input-checkbox-javascript" value="javascript" name="skill" />
       <label for="input-checkbox-javascript">JavaScript</label>
@@ -51,20 +51,23 @@
   </div>
 
   <label for="time">&#9203 Project deadline</label>
-  <input type="number" id="time" name="time" placeholder="In days">
+  <input type="number" id="time" name="time" placeholder="In days" class="shadow p-3 mb-5 bg-white rounded border">
 
   <label for="budget">&#128182 Project budget (€)</label>
-  <input type="number" id="budget" name="budget" placeholder="How much can you spend in this project?">
+  <input type="number" id="budget" name="budget" placeholder="How much can you spend in this project?" class="shadow p-3 mb-5 bg-white rounded border">
 
   <label for="status">&#128678 Project status</label>
-  <select name="status" id="input-status" >
+  <select name="status" id="input-status" class="shadow p-3 mb-5 bg-white rounded border" >
     <option value="Available" >Available</option> 
   </select>
 
-
   <label for="input-image">&#128248 Image</label>
-  <input type="file" id="input-image" name="image" accept="image/png, image/jpeg">
+  <input type="file" id="input-image" name="image" accept="image/png, image/jpeg" class="shadow p-3 mb-5 bg-white rounded border">
 
+   <label for="input-description">&#128221 Description</label>
+   <textarea name="description" id="" cols="30" rows="10" placeholder="Could you share more details about the project?" class="shadow p-3 mb-5 bg-white rounded border"></textarea>
   <button class="btn btn-primary rounded">Submit</button>
 </form>
+
+
 

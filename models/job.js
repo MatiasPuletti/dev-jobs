@@ -66,6 +66,9 @@ const jobSchema = new mongoose.Schema(
       type: mongoose.Types.ObjectId,
       ref: 'User'
     },
+    description: {
+      type: String
+    },
     interested_user: {
       type: mongoose.Types.ObjectId,
       ref: 'Application'
