@@ -19,42 +19,29 @@ router.get('/', (req, res, next) => {
 
 // Search jobs multiple words
 
-/*
 router.get('/search', (req, res, next) => {
   const search = req.query.search;
+  // const skillQuery = req.query.skill || [];
+  // console.log(skillQuery);
   const terms = search.split(' ');
   Job.find({
-    
     $and: terms.map((term) => ({
       title: new RegExp('\\b' + term + '\\b', 'i')
     }))
-    
+    //,
+    //skill: { $in: skillQuery }
   }).then((jobs) => {
     res.render('home', { job: jobs });
-  });
+    }) 
 });
-*/
 
 //search jobs filter checkboxes
 
-router.get('/search', (req, res, next) => {
-  const search = req.query.q;
+router.get('/filter', (req, res, next) => {
+  const query = req.query.q;
   const skillQuery = req.query.skill;
-  /*let queryCond = {};
 
-  if(skill.javascript){
-    queryCond.javascript=query.javascript;
-  }
-  if(skill.css){
-    queryCond.css=query.css;
-  }
-  if(skill.html){
-    queryCond.html=query.html;
-  }*/
-
-  console.log(skillQuery);
-
-  Job.find( { skill: skillQuery } )
+  Job.find({ skill: skillQuery })
     .then((job) => {
       //console.log(search);
       //console.log(job);
@@ -64,7 +51,6 @@ router.get('/search', (req, res, next) => {
       next(error);
     });
 });
-
 
 router.get('/private', (req, res, next) => {
   if (req.user) {
