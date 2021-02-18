@@ -84,15 +84,5 @@ app.use((error, req, res, next) => {
 });
 
 
-//filter jobs
-
-const filterJavascript = document.querySelector('#check-javascript');
-filterJavascript.addEventListener('change', function (e){
-  if (filterJavascript.checked) {
-    console.log('checkbox has been checked')
-  } else {
-    console.log('checkbox has NOT been checked')
-  }
-})
 
 module.exports = app;
