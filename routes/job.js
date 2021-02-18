@@ -184,37 +184,47 @@ router.get('/:id/update', routeGuard, (req, res, next) => {
     });
 });
 
-router.post('/:id/update', routeGuard, (req, res, next) => {
-  const id = req.params.id;
-  const data = req.body;
+router.post(
+  '/:id/update',
+  routeGuard,
+  uploadMiddleware.single('image'),
+  (req, res, next) => {
+    const id = req.params.id;
+    const data = req.body;
 
-  let skill;
+    let image;
+    if (req.file) {
+      image = req.file.path;
+    }
 
-  if (typeof data.skill === 'string') {
-    skill = [data.skill];
-  } else if (data.skill instanceof Array) {
-    skill = data.skill;
-  } else {
-    skill = [];
-  }
+    let skill;
 
-  Job.findByIdAndUpdate(id, {
-    title: data.title,
-    image: data.image || undefined,
-    status: data.status,
-    description: data.description,
-    category: data.category,
-    skill: skill,
-    time: data.time,
-    budget: data.budget
-  })
-    .then((job) => {
-      res.redirect(`/job/${job._id}`);
+    if (typeof data.skill === 'string') {
+      skill = [data.skill];
+    } else if (data.skill instanceof Array) {
+      skill = data.skill;
+    } else {
+      skill = [];
+    }
+
+    Job.findByIdAndUpdate(id, {
+      title: data.title,
+      image: image,
+      status: data.status,
+      description: data.description,
+      category: data.category,
+      skill: skill,
+      time: data.time,
+      budget: data.budget
     })
-    .catch((error) => {
-      next(error);
-    });
-});
+      .then((job) => {
+        res.redirect(`/job/${job._id}`);
+      })
+      .catch((error) => {
+        next(error);
+      });
+  }
+);
 
 router.get('/:id/delete', routeGuard, (req, res, next) => {
   const id = req.params.id;
