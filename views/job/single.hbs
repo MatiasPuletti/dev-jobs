@@ -4,17 +4,52 @@
     {{v1}} is not equal to {{v2}}
 {{/ifCond}}-->
 
-<h2>user._id: {{user._id}}</h2>
+{{!-- <h2>user._id: {{user._id}}</h2>
 <h2>session.userId: {{session.userId}}</h2>
 <h2>job.creator._id: {{job.creator._id}}</h2>
+ --}}
 
+<div class="card carta shadow p-3 mb-5 bg-white rounded" style="width: 100%;">
+<div  class="card-body">
 
+<h1 style="margin-left: 33px;">{{job.title}}</h1>
 
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5>&#129504 {{job.skill}}</h5><br>
+      <h5>&#128187 {{job.category}}</h5></br>
+      <h5>&#128678 {{job.status}}</h5></br>
+      <h4 style="margin-top: 40px;">&#128221 Job Description</h4><br>
+      <span>{{job.description}}</span></br>
+    </div>
+
+ 
+
+     <div class="col">
+        <h5>&#128182 €{{job.budget}}</h5></br>
+        <h5>&#9203 {{job.time}} days</h5></br>
+        <h5>&#128100 {{job.creator.firstname}} {{job.creator.lastname}}</h5></br>
+        <h4 style="margin-top: 40px;">&#128248 Image</h4><br>
+
+          {{#if job.image}}
+      <img class="image-single" style= "width:300px"  src="{{job.image}}" alt="{{job.title}}">
+    {{/if}}
+    </div>
+    </div>
+
+    </div>
+  </div>
+</div>
+
+{{!-- 
 <section id="card-job">
   <main style="background-color:aliceblue; padding:2rem;margin-bottom:2rem ">
 <h1>{{job.title}}</h1>
   
-<h3>Job category: {{job.category}}</h3>
+<h5>Job category: {{job.category}}</h5>
+
+
 <h3>Skills needed: </h3>
 <ul class="skill_list">
   {{#each job.skill}}
@@ -28,12 +63,16 @@
   <img style= "width:300px" src="{{job.image}}" alt="{{job.title}}">
 {{/if}}
 
+<h3>Status: {{job.status}}</h3>
+
 <h3>Job description: {{job.description}}</h3>
 
 </main>
-</section>
+</section> --}}
 
-<section id="card-publisher">
+
+
+{{!-- <section id="card-publisher">
   <main style="background-color:rgb(241, 255, 240); padding:2rem; margin-bottom:2rem">
 <h1>Publisher: {{job.creator.firstname}}'s</h1>
 <img src="{{job.creator.image}}" alt="{{title}}" class="profile-picture"><div>
@@ -51,18 +90,21 @@
 <br />
 <span><strong>Creator: {{job.creator}}</span>
 </main>
-</section>
+</section> --}}
 
 
 {{#if user}}
 
 {{#ifCond sessionUserStr creatorStr}}
 <!-- job creator view -->
-<p>job creator view</p>
-{{> singlecreator}}
+{{!-- <p>job creator view</p>
+ --}}{{> singlecreator}}
 {{else}}
 <!-- visitor view -->
-<p>visitor view</p>
+{{!-- <p>visitor view</p>
+ --}}
+
+
 {{> singlevisitor}}
 {{/ifCond}}
 
