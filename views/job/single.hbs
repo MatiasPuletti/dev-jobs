@@ -94,21 +94,45 @@
 
 
 {{#if user}}
+<!-- creator view -->
+
 
 {{#ifCond sessionUserStr creatorStr}}
-<!-- job creator view -->
-{{!-- <p>job creator view</p>
- --}}{{> singlecreator}}
+<a href="/job/{{job._id}}/delete" class="btn btn-primary rounded">Delete job</a>
+</br>
+<a href="/job/{{job._id}}/update">Update job</a>
+
+<br/>
+<br/>
+
+{{#each application }} 
+<p>{{interested_user.firstname}} <small>{{interested_user._id}} </small></p>
+  <form method="POST" action="/job/{{job._id}}/assign/{{interested_user._id}}">
+  <div class="d-grid gap-2">
+    <button class="btn btn-primary" type="button">Assign job to {{interested_user.firstname}} </button>
+    <input type="text" id="input-assignedUser" name="assignedUser" value="{{interested_user._id}}" />  
+    </div>
+  </form>
+{{/each}}
+
 {{else}}
 <!-- visitor view -->
-{{!-- <p>visitor view</p>
- --}}
 
+ {{#if userIsInterested }}
+    <!--<h1> {{sessionUserId}} interest is true</h1>-->
+    
+    <button class="btn btn-danger rounded">YOU HAVE ALREADY APPLIED</button>
+    
+{{else}}
+    <!--<h1> {{sessionUserId}} interest is false</h1>-->
+    <form method="POST" action="">
+    <button class="btn btn-primary rounded">I´M INTERESTED</button>
+    <input type="text" id="input-title" name="job" value="{{job._id}}" required />  
 
-{{> singlevisitor}}
+  </form>
+{{/if}}
 {{/ifCond}}
 
 {{/if}}
-
 
 
