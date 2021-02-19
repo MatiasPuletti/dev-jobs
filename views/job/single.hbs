@@ -121,13 +121,14 @@
  {{#if userIsInterested }}
     <!--<h1> {{sessionUserId}} interest is true</h1>-->
     
-    <button class="btn btn-danger rounded">YOU HAVE ALREADY APPLIED</button>
+    <button class="btn btn-danger rounded btn-block">YOU HAVE ALREADY APPLIED</button>
     
 {{else}}
     <!--<h1> {{sessionUserId}} interest is false</h1>-->
     <form method="POST" action="">
-    <button class="btn btn-primary rounded">I´M INTERESTED</button>
-    <input type="text" id="input-title" name="job" value="{{job._id}}" required />  
+      
+    <button class="btn btn-primary rounded fullwidth">I´M INTERESTED</button>
+    <input type="text" id="input-title" name="job" value="{{job._id}}" class="id-disappear" required />  
 
   </form>
 {{/if}}
