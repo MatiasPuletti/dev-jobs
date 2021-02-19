@@ -50,7 +50,7 @@ button,
 }
 
 input {
-  border-style:none;
+  border-style: none;
 }
 
 label {
@@ -107,5 +107,20 @@ nav {
 .carta {
   margin-top: 15px;
   margin-bottom: 40px;
+}
 
+div.checkbox-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  padding-right: 10px;
+  white-space: nowrap;
+}
+.checkbox-item {
+  vertical-align: middle;
+  padding: 7px 20px 2px;
+  margin-right: 5px;
+  flex: 1;
+  background-color: rgb(223, 251, 255);
+  border: solid 1px rgb(40, 140, 255);
+  border-radius: 10px;
 }

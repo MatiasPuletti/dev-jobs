@@ -19,9 +19,24 @@ router.get('/', (req, res, next) => {
 
 // Search jobs multiple words
 
+let allSearches = [];
+
 router.get('/search', (req, res, next) => {
+  const filterRoute = true;
   const search = req.query.q;
-  const skillQuery = req.query.skill || [
+  allSearches.push(search);
+  const skillQuery = req.query.skill || []; // console.log(skillQuery);
+  const skillCheck = req.query.skill;
+
+  /* eslint-disable no-param-reassign */
+  let skillCheckObj = skillCheck.reduce(function (o, val) {
+    o[val] = val;
+    return o;
+  }, {});
+  /* eslint-enable no-param-reassign */
+
+  /*
+  [
     'javascript',
     'css',
     'html',
@@ -29,19 +44,18 @@ router.get('/search', (req, res, next) => {
     'canvas',
     'react',
     'vue'
-  ];
-  // console.log(skillQuery);
-  const terms = search.split(' ');
+  ]
+  */ 
+ const terms = search.split(' ');
   Job.find({
-    $or: [
+    $and: [
       {
-        $and: [
-          { title: search }
-          //{ title: 'test' },
-        ]
+        $and: terms.map((term) => ({
+          title: new RegExp('\\b' + term + '\\b', 'i')
+        }))
       },
       {
-        $or: [{ skill: skillQuery }]
+        skill: { $in: skillQuery }
       }
     ]
   })
@@ -52,7 +66,15 @@ router.get('/search', (req, res, next) => {
     ,skill: { $in: skillQuery }
     */
     .then((jobs) => {
-      res.render('home', { job: jobs, search });
+      console.log(skillCheck);
+      console.log(skillCheckObj);
+      res.render('home', {
+        job: jobs,
+        search,
+        filterRoute,
+        allSearches,
+        skillCheckObj
+      });
     });
 });
 
