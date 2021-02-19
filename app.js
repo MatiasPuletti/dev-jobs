@@ -26,6 +26,7 @@ hbs.registerHelper('ifCond', function(v1, v2, options) {
   return options.inverse(this);
 });
 
+hbs.registerHelper('date', require('helper-date'));
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
