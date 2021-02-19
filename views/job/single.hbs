@@ -111,11 +111,13 @@
 <br/>
 
 {{#each application }} 
-<p>{{interested_user.firstname}} <small>{{interested_user._id}} </small></p>
+
+<h3>List of interested users for this job</h3>
+
   <form method="POST" action="/job/{{job._id}}/assign/{{interested_user._id}}">
   <div class="d-grid gap-2">
-    <button class="btn btn-primary" type="button">Assign job to {{interested_user.firstname}} </button>
-    <input type="text" id="input-assignedUser" name="assignedUser" value="{{interested_user._id}}" />  
+    <button class="btn btn-primary" type="button">Assign job to {{interested_user.firstname}} </button> <br>
+    <input type="text" id="input-assignedUser" name="assignedUser" value="{{interested_user._id}}" class="id-disappear" />  
     </div>
   </form>
 {{/each}}
