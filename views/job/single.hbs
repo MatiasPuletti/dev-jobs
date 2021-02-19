@@ -12,7 +12,7 @@
 <div class="card carta shadow p-3 mb-5 bg-white rounded" style="width: 100%;">
 <div  class="card-body">
 
-<h1 style="margin-left: 33px;">{{job.title}}</h1>
+<h1 style="margin-left: 33px;" class="title-margin">{{job.title}}</h1>
 
 <div class="container">
   <div class="row">
@@ -33,7 +33,7 @@
         <h4 style="margin-top: 40px;">&#128248 Image</h4><br>
 
           {{#if job.image}}
-      <img class="image-single" style= "width:300px"  src="{{job.image}}" alt="{{job.title}}">
+      <img class="shadow-lg p-3 mb-5 bg-body rounded" src="{{job.image}}" alt="{{job.title}}">
     {{/if}}
     </div>
     </div>
@@ -98,9 +98,14 @@
 
 
 {{#ifCond sessionUserStr creatorStr}}
-<a href="/job/{{job._id}}/delete" class="btn btn-primary rounded">Delete job</a>
+
+
+
+<a href="/job/{{job._id}}/update" class="btn btn-primary rounded fullwidth">Update job</a>
 </br>
-<a href="/job/{{job._id}}/update">Update job</a>
+<a href="/job/{{job._id}}/delete" class="btn btn-danger rounded fullwidth">Delete job</a>
+
+
 
 <br/>
 <br/>
@@ -121,13 +126,13 @@
  {{#if userIsInterested }}
     <!--<h1> {{sessionUserId}} interest is true</h1>-->
     
-    <button class="btn btn-danger rounded btn-block">YOU HAVE ALREADY APPLIED</button>
+    <button class="btn btn-danger rounded btn-block">You have already applied</button>
     
 {{else}}
     <!--<h1> {{sessionUserId}} interest is false</h1>-->
     <form method="POST" action="">
       
-    <button class="btn btn-primary rounded fullwidth">I´M INTERESTED</button>
+    <button class="btn btn-primary rounded fullwidth">I'm interested</button>
     <input type="text" id="input-title" name="job" value="{{job._id}}" class="id-disappear" required />  
 
   </form>

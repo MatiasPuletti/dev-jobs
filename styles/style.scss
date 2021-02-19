@@ -109,10 +109,7 @@ nav {
 }
 
 .image-single {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
+  width: max-content;
 }
 
 .id-disappear {
@@ -123,4 +120,15 @@ nav {
 .fullwidth {
   width: 100%;
   max-width: 100%;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.title-margin {
+  padding-bottom: 35px;
 }
