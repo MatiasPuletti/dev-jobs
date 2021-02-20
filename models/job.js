@@ -71,11 +71,11 @@ const jobSchema = new mongoose.Schema(
     },
     interested_user: {
       type: mongoose.Types.ObjectId,
-      ref: 'Application'
+      ref: 'User'
     },
     accepted_provider: {
       type: mongoose.Types.ObjectId,
-      ref: 'Application'
+      ref: 'User'
     },
     comments: [
       {
