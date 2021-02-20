@@ -12,7 +12,7 @@
 <div class="card carta shadow p-3 mb-5 bg-white rounded" style="width: 100%;">
 <div  class="card-body">
 
-<h1 style="margin-left: 33px;" class="title-margin">{{job.title}}</h1>
+<h1 style="margin-left: 12px;" class="title-margin">{{job.title}}</h1>
 
 <div class="container">
   <div class="row">
@@ -108,36 +108,40 @@
 <br/>
 
 {{#if job.accepted_provider}}
-<h3>Accepted provider:</h3>
+<h3>Job assigned to</h3>
 
-<div class="shadow-lg p-3 mb-5 bg-body rounded">
+<div class="shadow-lg p-3 mb-5 bg-body rounded" style="width: 45%;">
 
-<img class="p-3 mb-5 bg-body rounded" style="width:200px" src="{{job.accepted_provider.image}}" alt="{{job.accepted_provider.firstname}}">
-<h5>Name: {{job.accepted_provider.firstname}} {{job.accepted_provider.lastname}}</h5>
-<h5>Location: {{job.accepted_provider.location}}</h5>
-<h5>Language: {{job.accepted_provider.language}}</h5>
+<img class="p-3 mb-5 bg-body interested-image center" style="width:200px" src="{{job.accepted_provider.image}}" alt="{{job.accepted_provider.firstname}}">
+<h5 style="padding-bottom: 10px;">&#128100 {{job.accepted_provider.firstname}} {{job.accepted_provider.lastname}}</h5>
+<h5 style="padding-bottom: 10px;">&#128205 {{job.accepted_provider.location}}</h5>
+<h5 style="padding-bottom: 10px;">&#128483 {{job.accepted_provider.language}}</h5>
 <br>
 </div>
 
 {{/if}}
 
-<h3>List of interested users for this job</h3>
+<h3>Interested developers in this job</h3>
+
+<div style="display: flex;">
+
 {{#each application }} 
 
-<div class="shadow-lg p-3 mb-5 bg-body rounded">
+<div class="shadow-lg p-3 mb-5 bg-body rounded margin-interested" style="width: 45%;">
 
-<img class="p-3 mb-5 bg-body rounded" style="width:200px" src="{{interested_user.image}}" alt="{{interested_user.firstname}}">
-<h5>Name: {{interested_user.firstname}} {{interested_user.lastname}}</h5>
-<h5>Location: {{interested_user.location}}</h5>
-<h5>Language: {{interested_user.language}}</h5>
+<img class="p-3 mb-5 bg-body interested-image center" style="width:200px;" src="{{interested_user.image}}" alt="{{interested_user.firstname}}">
+<h5 style="padding-bottom: 10px;">&#128100 {{interested_user.firstname}} {{interested_user.lastname}}</h5>
+<h5 style="padding-bottom: 10px;">&#128205 {{interested_user.location}}</h5>
+<h5 style="padding-bottom: 10px;">&#128483 {{interested_user.language}}</h5>
 <br>
   <form method="POST" action="/job/{{job._id}}/assign/{{interested_user._id}}">
-    <button>Assign job to {{interested_user.firstname}} </button>
-    <input type="text" id="input-assignedUser" name="assignedUser" value="{{interested_user._id}}" />  
+    <button class="btn btn-primary rounded fullwidth">Assign job to {{interested_user.firstname}} </button>
+    <input type="text" id="input-assignedUser" name="assignedUser" value="{{interested_user._id}}" class="id-disappear"/>  
 
   </form>
 </div>
 {{/each}}
+</div>
 
 
 
