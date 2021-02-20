@@ -1,14 +1,48 @@
-<h1 class="titles">Find your Dev Job</h1>
 
+
+
+<h1 class="titles">Find your Dev Job</h1>
 <form action="/search" method="GET">
 <label for="input-search"></label>
-<input type="text" id="input-search" name="search" placeholder="Javascript, React, Rails... " class="shadow p-3 mb-5 bg-white rounded border" style="line-height: 40px;" />
+<input type="text" id="input-search" name="q" placeholder="Javascript, React, Rails... " class="shadow p-3  bg-white rounded border" style="line-height: 40px;" />
+
+{{!-- {{#if filterRoute}} --}}
+<!--<input type="checkbox" id="input-checkbox-css" value="css" name="skill" />-->
+  <div class="checkbox-wrapper">
+  <div class="checkbox-item">
+      <input type="checkbox" id="input-checkbox-javascript" value="javascript" name="skill" {{#if skillCheckObj.javascript}} checked {{/if}}/>
+      <label for="input-checkbox-javascript">JavaScript</label>
+    </div>
+    <div class="checkbox-item">
+      <input type="checkbox" id="input-checkbox-css" value="css" name="skill" {{#if skillCheckObj.css}} checked {{/if}}/>
+      <label for="input-checkbox-css">Css</label>
+    </div>
+    <div class="checkbox-item">
+      <input type="checkbox" id="input-checkbox-html" value="html" name="skill" {{#if skillCheckObj.html}} checked {{/if}}/>
+      <label for="input-checkbox-html">Html</label>
+    </div>
+    <div class="checkbox-item">
+      <input type="checkbox" id="input-checkbox-mongodb" value="mongodb" name="skill" {{#if skillCheckObj.mongodb}} checked {{/if}}/>
+      <label for="input-checkbox-mongodb">Mongodb</label>
+    </div>
+    <div class="checkbox-item">
+      <input type="checkbox" id="input-checkbox-canvas" value="canvas" name="skill" {{#if skillCheckObj.canvas}} checked {{/if}}/>
+      <label for="input-checkbox-canvas">Canvas</label>
+    </div>
+    <div class="checkbox-item">
+      <input type="checkbox" id="input-checkbox-react" value="react" name="skill" {{#if skillCheckObj.react}} checked {{/if}}/>
+      <label for="input-checkbox-react">React</label>
+    </div>
+    <div class="checkbox-item">
+      <input type="checkbox" id="input-checkbox-vue" value="vue" name="skill" {{#if skillCheckObj.vue}} checked {{/if}}/>
+      <label for="input-checkbox-vue">Vue</label>
+    </div>
+  </div>
+{{!-- {{/if}} --}}
+<button class="btn btn-primary rounded padding-search">Search</button>
 </form>
-
-
 {{#each job}}
 <div class="card carta shadow p-3 mb-5 bg-white rounded" style="width: 100%;">
-
 <div  class="card-body">
     <h1>{{title}}</h1>
     <span class="separate">&#129504 {{skill}}</span></br>
@@ -18,11 +52,8 @@
     <span class="separate">&#128100 {{creator.firstname}} {{creator.lastname}}</span></br>
     <span class="separate">&#128678 {{status}}</span></br>
     <span class="separate">&#128197 {{date creationDate "D MMMM Y"}}</span></br>
-    <br>
     <a href="/job/{{_id}}" target="_blank" class="btn btn-primary rounded">Check this job</a>
     <div class="job-border"></div>
-
  </div>
 </div>
-   
 {{/each}}
