@@ -94,34 +94,50 @@
 
 
 {{#if user}}
-<!-- creator view -->
-
+<!-- user is auhtenticated -->
 
 {{#ifCond sessionUserStr creatorStr}}
-
+<!-- creator view -->
 
 
 <a href="/job/{{job._id}}/update" class="btn btn-primary rounded fullwidth">Update job</a>
 </br>
 <a href="/job/{{job._id}}/delete" class="btn btn-danger rounded fullwidth">Delete job</a>
 
-
-
 <br/>
 <br/>
 
+{{#if job.accepted_provider}}
 
-{{#each application }} 
+<p>{{job.accepted_provider.firstname}}</p>
+<p>{{job.accepted_provider.lastname}}</p>
+<p>{{job.accepted_provider.email}}</p>
+<p>{{job.accepted_provider.image}}</p>
+<p>{{job.accepted_provider.location}}</p>
+<p>{{job.accepted_provider.language}}</p>
+<p>{{job.accepted_provider.userType}}</p>
+
+{{/if}}
 
 <h3>List of interested users for this job</h3>
+{{#each application }} 
 
+<div class="shadow-lg p-3 mb-5 bg-body rounded">
+
+<img class="p-3 mb-5 bg-body rounded" style="width:200px" src="{{interested_user.image}}" alt="{{interested_user.firstname}}">
+<h5>Name: {{interested_user.firstname}} {{interested_user.lastname}}</h5>
+<h5>Location: {{interested_user.location}}</h5>
+<h5>Language: {{interested_user.language}}</h5>
+<br>
   <form method="POST" action="/job/{{job._id}}/assign/{{interested_user._id}}">
-  <div class="d-grid gap-2">
-    <button class="btn btn-primary" >Assign job to {{interested_user.firstname}} </button> <br>
-    <input type="text" id="input-assignedUser" name="assignedUser" value="{{interested_user._id}}" class="id-disappear" />  
-    </div>
+    <button>Assign job to {{interested_user.firstname}} </button>
+    <input type="text" id="input-assignedUser" name="assignedUser" value="{{interested_user._id}}" />  
+
   </form>
+</div>
 {{/each}}
+
+
 
 {{else}}
 <!-- visitor view -->
@@ -140,6 +156,7 @@
 
   </form>
 {{/if}}
+
 {{/ifCond}}
 
 {{/if}}

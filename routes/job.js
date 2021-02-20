@@ -67,7 +67,9 @@ router.get('/:id', (req, res, next) => {
 
   Job.findById(id)
     .populate('creator')
+    .populate('accepted_provider')
     .then((doc) => {
+      console.log(`-------------JOB----------${doc}`);
       creatorStr = doc.creator._id.toString();
       job = doc;
 
@@ -79,6 +81,7 @@ router.get('/:id', (req, res, next) => {
       } else {
         Application.find({ job: id })
           .populate('interested_user')
+          .populate('accepted_provider')
           .then((application) => {
             if (!req.session.userId) {
               session.userId = 0;
@@ -99,7 +102,7 @@ router.get('/:id', (req, res, next) => {
                 userIsInterested = false;
               }
             });
-
+            console.log(application);
             res.render('job/single', {
               job,
               application,
