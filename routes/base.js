@@ -3,6 +3,7 @@ const express = require('express');
 const router = new express.Router();
 const routeGuard = require('../middleware/route-guard');
 const Job = require('./../models/job');
+
 router.get('/', (req, res, next) => {
   Job.find()
     .populate('creator')
@@ -16,6 +17,7 @@ router.get('/', (req, res, next) => {
 });
 // Search jobs multiple words
 let allSearches = [];
+
 router.get('/search', (req, res, next) => {
   const filterRoute = true;
   const search = req.query.q;
@@ -51,6 +53,7 @@ router.get('/search', (req, res, next) => {
     }))
     ,skill: { $in: skillQuery }
     */
+    .populate('creator')
     .then((jobs) => {
       // console.log(skillCheck);
       console.log(skillCheckObj);
