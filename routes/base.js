@@ -25,30 +25,22 @@ router.get('/search', (req, res, next) => {
   const filterRoute = true;
   const search = req.query.q;
   allSearches.push(search);
-  const skillQuery = req.query.skill || []; // console.log(skillQuery);
-  const skillCheck = req.query.skill;
+  const skillQuery = [req.query.skill] || []; // console.log(skillQuery);
+  const skillCheckObj = {};
+  if (skillQuery.length > 0) {
+    skillQuery.forEach((item) => (skillCheckObj[item] = item));
+  }
 
-  /* eslint-disable no-param-reassign */
-  let skillCheckObj = skillCheck.reduce(function (o, val) {
-    o[val] = val;
-    return o;
-  }, {});
-  /* eslint-enable no-param-reassign */
+  // /* eslint-disable no-param-reassign */
+  // let skillCheckObj = skillCheck.reduce(function (o, val) {
+  //   o[val] = val;
+  //   return o;
+  // }, {});
+  // /* eslint-enable no-param-reassign */
 
-  /*
-  [
-    'javascript',
-    'css',
-    'html',
-    'mongodb',
-    'canvas',
-    'react',
-    'vue'
-  ]
-  */ 
- const terms = search.split(' ');
+  const terms = search.split(' ');
   Job.find({
-    $and: [
+    $or: [
       {
         $and: terms.map((term) => ({
           title: new RegExp('\\b' + term + '\\b', 'i')
@@ -66,7 +58,7 @@ router.get('/search', (req, res, next) => {
     ,skill: { $in: skillQuery }
     */
     .then((jobs) => {
-      console.log(skillCheck);
+      // console.log(skillCheck);
       console.log(skillCheckObj);
       res.render('home', {
         job: jobs,
