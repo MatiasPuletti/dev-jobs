@@ -4,20 +4,7 @@
 
 <label for="input-search"></label>
 <input type="text" id="input-search" name="q" placeholder="Javascript, React, Rails... " class="shadow p-3 mb-5 bg-white rounded border" style="line-height: 40px;" />
-{{#if search}}
-Your latest searches:
-<a href="/search?q={{search}}"> {{search}}</a>
-  <div>
-    <ul id="search-list" class="list-group mt-3 mb-3">
-    {{#each allSearches}}
-    <li><a id="{{@index}}-{{search}}" href="/search?q={{this}}"> {{this}}</a><i class="delete-icon fas fa-trash-alt"></i></li>
-    {{/each}}
-    </ul>
-  </div>
-    
-{{else}}
-    <p>Theres no search</p>
-{{/if}}
+
   <button>Search</button>
 
 

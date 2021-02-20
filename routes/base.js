@@ -25,10 +25,14 @@ router.get('/search', (req, res, next) => {
   const filterRoute = true;
   const search = req.query.q;
   allSearches.push(search);
-  const skillQuery = [req.query.skill] || []; // console.log(skillQuery);
+  const skillQuery = req.query.skill; // console.log(skillQuery);
   const skillCheckObj = {};
-  if (skillQuery.length > 0) {
-    skillQuery.forEach((item) => (skillCheckObj[item] = item));
+  if (skillQuery) {
+    if (typeof skillQuery === 'string') {
+      skillCheckObj[skillQuery] = true;
+    } else {
+      skillQuery.forEach((item) => (skillCheckObj[item] = true));
+    }
   }
 
   // /* eslint-disable no-param-reassign */
@@ -40,15 +44,13 @@ router.get('/search', (req, res, next) => {
 
   const terms = search.split(' ');
   Job.find({
-    $or: [
+    $and: [
       {
         $and: terms.map((term) => ({
           title: new RegExp('\\b' + term + '\\b', 'i')
         }))
       },
-      {
-        skill: { $in: skillQuery }
-      }
+      skillQuery ? { skill: { $in: skillQuery } } : {}
     ]
   })
 
