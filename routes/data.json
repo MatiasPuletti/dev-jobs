@@ -1,0 +1,12 @@
+
+
+{
+    "_id": {
+        "$oid": "6030d2ed9fd84024c91f7d64"
+    }
+}
+
+{
+	"_id":{
+		"$oid":"6030cb83d45cb206838b95e5"
+	},"skill":["javascript","css","html"],"title":"Create a landing page for our business","category":"Web development","description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed odio morbi quis commodo odio. Mauris pharetra et ultrices neque ornare aenean euismod elementum. Mauris cursus mattis molestie a iaculis. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque habitant morbi. In aliquam sem fringilla ut morbi tincidunt augue. Turpis massa sed elementum tempus egestas. Sit amet luctus venenatis lectus. Id velit ut tortor pretium viverra suspendisse potenti. Ultrices sagittis orci a scelerisque. Mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus et netus. Commodo sed egestas egestas fringilla phasellus faucibus scelerisque eleifend donec. Et leo duis ut diam quam.\r\n","time":7,"budget":400,"image":"https://res.cloudinary.com/dygpa3ln3/image/upload/v1613810562/jrwofyeue33lrvdazmag.jpg","status":"Available","creator":{"$oid":"6030cb21d45cb206838b95e4"},"comments":[],"creationDate":{"$date":"2021-02-20T08:42:43.145Z"},"updateDate":{"$date":"2021-02-20T08:42:43.145Z"},"__v":0}
