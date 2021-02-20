@@ -108,14 +108,16 @@
 <br/>
 
 {{#if job.accepted_provider}}
+<h3>Accepted provider:</h3>
 
-<p>{{job.accepted_provider.firstname}}</p>
-<p>{{job.accepted_provider.lastname}}</p>
-<p>{{job.accepted_provider.email}}</p>
-<p>{{job.accepted_provider.image}}</p>
-<p>{{job.accepted_provider.location}}</p>
-<p>{{job.accepted_provider.language}}</p>
-<p>{{job.accepted_provider.userType}}</p>
+<div class="shadow-lg p-3 mb-5 bg-body rounded">
+
+<img class="p-3 mb-5 bg-body rounded" style="width:200px" src="{{job.accepted_provider.image}}" alt="{{job.accepted_provider.firstname}}">
+<h5>Name: {{job.accepted_provider.firstname}} {{job.accepted_provider.lastname}}</h5>
+<h5>Location: {{job.accepted_provider.location}}</h5>
+<h5>Language: {{job.accepted_provider.language}}</h5>
+<br>
+</div>
 
 {{/if}}
 
